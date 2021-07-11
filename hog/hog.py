@@ -315,8 +315,7 @@ def make_averaged(original_function, trials_count=1000):
     def roll_and_return(*args):
         result = 0
         for i in range(trials_count):
-            f = original_function(*args)
-            result += f 
+            result += original_function(*args) 
         return result/trials_count
 
     return roll_and_return
@@ -336,6 +335,14 @@ def max_scoring_num_rolls(dice=six_sided, trials_count=1000):
     """
     # BEGIN PROBLEM 9
     "*** YOUR CODE HERE ***"
+    highest_index,highest_avg = 0,0
+
+    for i in range(1,11):
+        avg = make_averaged(roll_dice,trials_count)(i,dice)
+        if avg > highest_avg:
+            highest_avg,highest_index = avg,i
+    return highest_index
+        
     # END PROBLEM 9
 
 
@@ -376,7 +383,10 @@ def piggypoints_strategy(score, opponent_score, cutoff=8, num_rolls=6):
     returns NUM_ROLLS otherwise.
     """
     # BEGIN PROBLEM 10
-    return 6  # Replace this statement
+    if piggy_points(opponent_score)>cutoff:
+        return 0
+    else:
+        return num_rolls
     # END PROBLEM 10
 
 
@@ -386,7 +396,12 @@ def more_boar_strategy(score, opponent_score, cutoff=8, num_rolls=6):
     Otherwise, it returns NUM_ROLLS.
     """
     # BEGIN PROBLEM 11
-    return 6  # Replace this statement
+    piggy = piggy_points(opponent_score)
+    if piggy>cutoff or more_boar(score+piggy,opponent_score):
+        return 0
+    else:
+        return num_rolls
+
     # END PROBLEM 11
 
 
@@ -395,7 +410,7 @@ def final_strategy(score, opponent_score):
 
     *** YOUR DESCRIPTION HERE ***
     """
-    # BEGIN PROBLEM 12
+    # BEGIN PROBLEM 12 TODO
     return 6  # Replace this statement
     # END PROBLEM 12
 
