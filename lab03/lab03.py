@@ -20,6 +20,12 @@ def summation(n, term):
     """
     assert n >= 1
     "*** YOUR CODE HERE ***"
+    if n==1:
+        return term(1)
+    else:
+        result = term(n)
+        return summation(n-1,term)+result
+
     
 
 
@@ -36,6 +42,12 @@ def pascal(row, column):
     6
     """
     "*** YOUR CODE HERE ***"
+    if column == 0:
+        return 1
+    elif row ==0:
+        return 0
+    else:
+        return pascal(row-1,column)+pascal(row-1,column-1)
 
 
 def paths(m, n):
@@ -52,3 +64,8 @@ def paths(m, n):
     1
     """
     "*** YOUR CODE HERE ***"
+    if m == 1 or n == 1:
+        return 1
+    else:
+        return paths(m-1,n) + paths(m,n-1)
+
