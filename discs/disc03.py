@@ -5,18 +5,23 @@ def multiply(m, n):
     15
     """
     "*** YOUR CODE HERE ***"
+    if n==1:
+        return m
+    else :
+        return multiply(m,n-1)+m
     
 
-def merge(n1, n2):
-    """ Merges two numbers by digit in decreasing order
-    >>> merge(31, 42)
-    4321
-    >>> merge(21, 0)
-    21
-    >>> merge (21, 31) 
-    3211
-    """
-    "*** YOUR CODE HERE ***"
+# def merge(n1, n2):
+#     """ Merges two numbers by digit in decreasing order
+#     >>> merge(31, 42)
+#     4321
+#     >>> merge(21, 0)
+#     21
+#     >>> merge (21, 31) 
+#     3211
+#     """
+#     "*** YOUR CODE HERE ***"
+#     # if 
 
 
         
@@ -36,6 +41,15 @@ def hailstone(n):
     7
     """
     "*** YOUR CODE HERE ***"
+    print(n)
+    if n==1:
+        return 1
+    elif n%2==0:
+        return 1+hailstone(n//2)
+    else:
+        return hailstone(n*3+1)+1
+
+
 
 def is_prime(n):
     """Returns True if n is a prime number and False otherwise.
@@ -48,31 +62,32 @@ def is_prime(n):
     True
     """
     "*** YOUR CODE HERE ***"
+    
 
 
-# Tree Recursion
+# # Tree Recursion
 
-def count_stair_ways(n):
-    """Returns the number of ways to climb up a flight of
-    n stairs, moving either 1 step or 2 steps at a time.
-    >>> count_stair_ways(4)
-    5
-    """
-    "*** YOUR CODE HERE ***"
+# def count_stair_ways(n):
+#     """Returns the number of ways to climb up a flight of
+#     n stairs, moving either 1 step or 2 steps at a time.
+#     >>> count_stair_ways(4)
+#     5
+#     """
+#     "*** YOUR CODE HERE ***"
 
-def count_k(n, k):
-    """ Counts the number of paths up a flight of n stairs
-    when taking up to and including k steps at a time.
-    >>> count_k(3, 3) # 3, 2 + 1, 1 + 2, 1 + 1 + 1 
-    4
-    >>> count_k(4, 4)
-    8
-    >>> count_k(10, 3)
-    274
-    >>> count_k(300, 1) # Only one step at a time
-    1
-    """
-    "*** YOUR CODE HERE ***"
+# def count_k(n, k):
+#     """ Counts the number of paths up a flight of n stairs
+#     when taking up to and including k steps at a time.
+#     >>> count_k(3, 3) # 3, 2 + 1, 1 + 2, 1 + 1 + 1 
+#     4
+#     >>> count_k(4, 4)
+#     8
+#     >>> count_k(10, 3)
+#     274
+#     >>> count_k(300, 1) # Only one step at a time
+#     1
+#     """
+#     "*** YOUR CODE HERE ***"
 
 # # Exam prep
 # def is_palindrome(s):
