@@ -35,6 +35,19 @@ def make_repeater(func, n):
     5
     """
     "*** YOUR CODE HERE ***"
+    # def h(k):
+    #     f,i = k,0
+    #     while i<n:
+    #         f,i = func(f),i+1
+    #     return f
+    # return h
+
+    # use compose1 with identity
+    i = identity 
+    while n > 0 :
+        i,n = compose1(func,i),n-1
+    return i
+
     
 
 
@@ -60,6 +73,13 @@ def num_eights(pos):
     True
     """
     "*** YOUR CODE HERE ***"
+    if pos==0:
+        return 0
+    elif pos==8:
+        return 1
+    else:
+        return num_eights(pos//10)+1 if pos%10==8 else num_eights(pos//10)
+
 
 
 def pingpong(n):
@@ -95,6 +115,24 @@ def pingpong(n):
     True
     """
     "*** YOUR CODE HERE ***"
+    def h(index,ppn,dir):
+        if index == n:
+            return ppn
+        elif index % 8 ==0 or index % 10 == 8 or index // 10 ==8:
+            return h(index+1,ppn-dir,-dir)
+        else:
+            return h(index+1,ppn+dir, dir)
+
+    return h(1,1,1)
+        
+    # index, ppn, dir = 1,1,1
+    # while index != n:
+    #     index += 1
+    #     ppn += dir
+    #     # print(index,ppn)
+    #     if index % 8 ==0 or index % 10 == 8 or index // 10 ==8:
+    #         dir = -dir
+    # return ppn
 
 
 def missing_digits(n):
@@ -126,6 +164,10 @@ def missing_digits(n):
     True
     """
     "*** YOUR CODE HERE ***"
+    # TODO
+        
+
+
 
 
 def get_next_coin(coin):
@@ -162,8 +204,13 @@ def count_coins(change):
     True
     """
     "*** YOUR CODE HERE ***"
+    # TODO
 
 
+
+
+
+# TODO leave to future
 def zero(f):
     return lambda x: x
 
