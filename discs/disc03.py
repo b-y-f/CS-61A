@@ -99,24 +99,24 @@ def count_stair_ways(n):
         return count_stair_ways(n-1)+count_stair_ways(n-2)
 
 # TODO
-# def count_k(n, k): 
-#     """ Counts the number of paths up a flight of n stairs
-#     when taking up to and including k steps at a time.
-#     >>> count_k(3, 3) # 3, 2 + 1, 1 + 2, 1 + 1 + 1 
-#     4
-#     >>> count_k(4, 4)
-#     8
-#     >>> count_k(10, 3)
-#     274
-#     >>> count_k(300, 1) # Only one step at a time
-#     1
-#     """
-#     "*** YOUR CODE HERE ***"
-#     if n==1:
-#         return 1
-#     elif n<0:
-#         return 0
-#     else:
+def count_k(n, k): 
+    """ Counts the number of paths up a flight of n stairs
+    when taking up to and including k steps at a time.
+    >>> count_k(3, 3) # 3, 2 + 1, 1 + 2, 1 + 1 + 1 
+    4
+    >>> count_k(4, 4)
+    8
+    >>> count_k(10, 3)
+    274
+    >>> count_k(300, 1) # Only one step at a time
+    1
+    """
+    "*** YOUR CODE HERE ***"
+    # if n==0:
+    #     return 1
+    # elif n<0:
+    #     return 0
+
 
 
 # # Exam prep
@@ -141,27 +141,27 @@ def is_palindrome(s):
 
 
 # TODO
-def greatest_pal(s):
-    """
-    >>> greatest_pal("tenet")
-    'tenet'
-    >>> greatest_pal("tenets")
-    'tenet'
-    >>> greatest_pal("stennet")
-    'tennet'
-    >>> greatest_pal("25 racecars")
-    'racecar'
-    >>> greatest_pal("abc")
-    'a'
-    >>> greatest_pal("")
-    ''
-    """
-    if len(s)<=1:
-        return s
-    left, right = s[0],s[-1]
-    if ___________________________________________________________________________:
-        return ____________________________________________________________________
-    return ____________________________________________________________________
+# def greatest_pal(s):
+#     """
+#     >>> greatest_pal("tenet")
+#     'tenet'
+#     >>> greatest_pal("tenets")
+#     'tenet'
+#     >>> greatest_pal("stennet")
+#     'tennet'
+#     >>> greatest_pal("25 racecars")
+#     'racecar'
+#     >>> greatest_pal("abc")
+#     'a'
+#     >>> greatest_pal("")
+#     ''
+#     """
+#     if len(s)<=1:
+#         return s
+#     left, right = s[0],s[-1]
+#     if ___________________________________________________________________________:
+#         return ____________________________________________________________________
+#     return ____________________________________________________________________
 
 # def greatest_pal(s):
 #     """

@@ -12,6 +12,7 @@ def couple(s, t):
     """
     assert len(s) == len(t)
     "*** YOUR CODE HERE ***"
+    return [list(i) for i in zip(s,t)]
 
 
 from math import sqrt
@@ -29,6 +30,7 @@ def distance(city_a, city_b):
     5.0
     """
     "*** YOUR CODE HERE ***"
+    return sqrt((get_lat(city_a)-get_lat(city_b))**2 + (get_lon(city_a)-get_lon(city_b))**2)
 
 
 def closer_city(lat, lon, city_a, city_b):
@@ -47,6 +49,8 @@ def closer_city(lat, lon, city_a, city_b):
     'Bucharest'
     """
     "*** YOUR CODE HERE ***"
+    pt = make_city('pt',lat,lon)
+    return get_name(city_a) if distance(pt,city_a)<distance(pt,city_b) else get_name(city_b)
 
 
 def check_city_abstraction():
@@ -152,6 +156,8 @@ def berry_finder(t):
     True
     """
     "*** YOUR CODE HERE ***"
+    # TODO
+
 
 
 def sprout_leaves(t, leaves):
@@ -188,6 +194,9 @@ def sprout_leaves(t, leaves):
           2
     """
     "*** YOUR CODE HERE ***"
+    # TODO hard
+
+
 
 
 # Abstraction tests for sprout_leaves and berry_finder
@@ -247,7 +256,7 @@ def coords(fn, seq, lower, upper):
     [[-2, 4], [1, 1], [3, 9]]
     """
     "*** YOUR CODE HERE ***"
-    return ______
+    return [[i,fn(i)] for i in seq if fn(i) in range(lower,upper+1)]
 
 
 def riffle(deck):
@@ -260,7 +269,8 @@ def riffle(deck):
     [0, 10, 1, 11, 2, 12, 3, 13, 4, 14, 5, 15, 6, 16, 7, 17, 8, 18, 9, 19]
     """
     "*** YOUR CODE HERE ***"
-    return _______
+    # TODO
+    ...
 
 
 def add_trees(t1, t2):
@@ -320,9 +330,11 @@ def build_successors_table(tokens):
     for word in tokens:
         if prev not in table:
             "*** YOUR CODE HERE ***"
+            table[prev]=[]
         "*** YOUR CODE HERE ***"
+        table[prev].append(word)
         prev = word
-    return table
+    return table  # {'.': ['We'], 'We': ['came'], 'came': ['to'], 'to': ['investigate', 'eat'], 'investigate': [','], ',': ['catch'], 'catch': ['bad'], 'bad': ['guys'], 'guys': ['and'], 'and': ['to'], 'eat': ['pie'], 'pie': ['.']}
 
 
 def construct_sent(word, table):
@@ -339,7 +351,18 @@ def construct_sent(word, table):
     result = ''
     while word not in ['.', '!', '?']:
         "*** YOUR CODE HERE ***"
+        result += word + ' '
+
+        lst = table[word]
+        rand_index = random.randint(0,len(lst)-1)
+        word = table[word][rand_index]
+       
+
     return result.strip() + word
+
+
+
+# ===========================================================================
 
 
 def shakespeare_tokens(path='shakespeare.txt', url='http://composingprograms.com/shakespeare.txt'):
@@ -353,8 +376,8 @@ def shakespeare_tokens(path='shakespeare.txt', url='http://composingprograms.com
         return shakespeare.read().decode(encoding='ascii').split()
 
 # Uncomment the following two lines
-# tokens = shakespeare_tokens()
-# table = build_successors_table(tokens)
+tokens = shakespeare_tokens()
+table = build_successors_table(tokens)
 
 
 def random_sent():
