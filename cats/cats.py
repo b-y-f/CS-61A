@@ -1,5 +1,6 @@
 """Typing test implementation"""
 
+from os import register_at_fork
 from utils import lower, split, remove_punctuation, lines_from_file
 from ucb import main, interact, trace
 from datetime import datetime
@@ -31,7 +32,16 @@ def choose(paragraphs, select, k):
     """
     # BEGIN PROBLEM 1
     "*** YOUR CODE HERE ***"
-    
+
+    new_p = [i for i in paragraphs if select(i)]
+
+    return '' if k>len(new_p)-1 else new_p[k]
+
+    # for i in paragraphs:
+    #     # print(i)
+    #     if not select(i):
+    #         paragraphs.remove(i)
+    # return '' if k>len(paragraphs)-1 else paragraphs[k]
     # END PROBLEM 1
 
 
@@ -51,6 +61,7 @@ def about(topic):
     assert all([lower(x) == x for x in topic]), 'topics should be lowercase.'
     # BEGIN PROBLEM 2
     "*** YOUR CODE HERE ***"
+
     # END PROBLEM 2
 
 

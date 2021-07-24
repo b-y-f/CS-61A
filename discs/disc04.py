@@ -65,28 +65,28 @@ def group_by(s, fn):
 
 # Exam Prep
 
-# def subset_sum(target, lst):
-#     """Returns True if it is possible to add some of the integers in lst
-#     to get target.
+def subset_sum(target, lst):
+    """Returns True if it is possible to add some of the integers in lst
+    to get target.
 
-#     >>> subset_sum(10, [-1, 5, 4, 6])
-#     True
-#     >>> subset_sum(4, [5, -2, 12])
-#     False
-#     >>> subset_sum(-3, [5, -2, 2, -2, 1])
-#     True
-#     >>> subset_sum(0, [-1, -3, 15])     # Sum up none of the numbers to get 0
-#     True
-#     """
-#     # TODO dont know hint: target-->0
-#     if target == 0:
-#         return True
-#     elif ...:
-#         return False
-#     else:
-#         a =  ...  # sub or not sub recursion
-#         b = ...
-#         return a or b
+    >>> subset_sum(10, [-1, 5, 4, 6])
+    True
+    >>> subset_sum(4, [5, -2, 12])
+    False
+    >>> subset_sum(-3, [5, -2, 2, -2, 1])
+    True
+    >>> subset_sum(0, [-1, -3, 15])     # Sum up none of the numbers to get 0
+    True
+    """
+    # TODO dont know hint: target-->0
+    if target == 0:
+        return True
+    elif len(lst)<1:
+        return False
+    else:
+        a = subset_sum(target-lst[0],lst[1:]) 
+        b = ... #  hint: keep same situation
+        return a or b
 
 
 def intersection(lst_of_lsts):

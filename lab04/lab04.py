@@ -157,6 +157,8 @@ def berry_finder(t):
     """
     "*** YOUR CODE HERE ***"
     # TODO
+    # while 'berry' not in branches(t):
+        
 
 
 
@@ -269,8 +271,7 @@ def riffle(deck):
     [0, 10, 1, 11, 2, 12, 3, 13, 4, 14, 5, 15, 6, 16, 7, 17, 8, 18, 9, 19]
     """
     "*** YOUR CODE HERE ***"
-    # TODO
-    ...
+    return [ deck[  (i%2) * (len(deck)//2) + i//2 ] for i in range(len(deck))]
 
 
 def add_trees(t1, t2):
@@ -376,8 +377,8 @@ def shakespeare_tokens(path='shakespeare.txt', url='http://composingprograms.com
         return shakespeare.read().decode(encoding='ascii').split()
 
 # Uncomment the following two lines
-tokens = shakespeare_tokens()
-table = build_successors_table(tokens)
+# tokens = shakespeare_tokens()
+# table = build_successors_table(tokens)
 
 
 def random_sent():

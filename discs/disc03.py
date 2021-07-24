@@ -98,7 +98,6 @@ def count_stair_ways(n):
     else:
         return count_stair_ways(n-1)+count_stair_ways(n-2)
 
-# TODO
 def count_k(n, k): 
     """ Counts the number of paths up a flight of n stairs
     when taking up to and including k steps at a time.
@@ -112,10 +111,13 @@ def count_k(n, k):
     1
     """
     "*** YOUR CODE HERE ***"
-    # if n==0:
-    #     return 1
-    # elif n<0:
-    #     return 0
+    # TODO
+    if n==0:
+        return 1
+    elif n<0:
+        return 0
+    else: #loop??
+        ...
 
 
 
