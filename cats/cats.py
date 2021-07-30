@@ -89,6 +89,17 @@ def accuracy(typed, reference):
     reference_words = split(reference)
     # BEGIN PROBLEM 3
     "*** YOUR CODE HERE ***"
+    total_typed = len(typed_words)
+    total_ref =len(reference_words)
+    shortest_len = total_typed if total_typed<total_ref else total_ref
+
+    if total_typed == 0:
+        if total_typed == total_ref:
+            return 100.0
+        return 0.0
+        
+    correct = len([typed_words[i] for i in range(shortest_len) if typed_words[i]==split(reference)[i]])
+    return (correct/total_typed)*100
     # END PROBLEM 3
 
 
