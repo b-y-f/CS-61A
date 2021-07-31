@@ -200,10 +200,10 @@ def chain_function():
     # TODO 
     def g(x, y): # x:counter y:saved
         def h(n):
-            if _________
-                _____________
+            if ...:
+                ...
             else:
-                ____________________
+                ...
         return h
-    return g(0,0)
+    return ...
 
