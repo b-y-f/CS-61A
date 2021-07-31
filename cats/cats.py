@@ -1,6 +1,6 @@
 """Typing test implementation"""
 
-from os import register_at_fork
+from os import close, register_at_fork
 from utils import lower, split, remove_punctuation, lines_from_file
 from ucb import main, interact, trace
 from datetime import datetime
@@ -146,6 +146,10 @@ def autocorrect(typed_word, valid_words, diff_function, limit):
     """
     # BEGIN PROBLEM 5
     "*** YOUR CODE HERE ***"
+    if typed_word in valid_words:
+        return typed_word
+    diff_values = [ diff_function(typed_word,i,limit) for i in valid_words ]
+    return typed_word if min(diff_values) > limit else valid_words[diff_values.index(min(diff_values))]
     # END PROBLEM 5
 
 
