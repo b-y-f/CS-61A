@@ -111,13 +111,15 @@ def count_k(n, k):
     1
     """
     "*** YOUR CODE HERE ***"
-    # TODO
     if n==0:
         return 1
     elif n<0:
         return 0
     else: #loop??
-        ...
+        sum = 0
+        for i in range(1,k+1):
+            sum += count_k(n - i, k)
+        return sum
 
 
 
