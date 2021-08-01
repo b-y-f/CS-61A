@@ -197,13 +197,11 @@ def chain_function():
     9 2
     4 3
     """
-    # TODO 
     def g(x, y): # x:counter y:saved
         def h(n):
-            if ...:
-                ...
+            if x==0 or x==n:
+                return g(n + 1,y)
             else:
-                ...
+                return print(x,y+1) or g(n+1,y+1)
         return h
-    return ...
-
+    return g(0,0)
