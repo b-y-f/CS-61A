@@ -177,7 +177,15 @@ def feline_flips(start, goal, limit):
     """
     # BEGIN PROBLEM 6
     # assert False, 'Remove this line'
+    l_start = len(start)
+    l_goal = len(goal)
+    shortest = min(l_start,l_goal)
+    char_diff = len([start[i] for i in range(shortest) if start[i]!=goal[i] ])
     
+    if l_start == l_goal:
+        return char_diff
+    else:
+        return char_diff + abs(l_start-l_goal)
     # END PROBLEM 6
 
 

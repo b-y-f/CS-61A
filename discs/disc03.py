@@ -145,27 +145,28 @@ def is_palindrome(s):
 
 
 # TODO
-# def greatest_pal(s):
-#     """
-#     >>> greatest_pal("tenet")
-#     'tenet'
-#     >>> greatest_pal("tenets")
-#     'tenet'
-#     >>> greatest_pal("stennet")
-#     'tennet'
-#     >>> greatest_pal("25 racecars")
-#     'racecar'
-#     >>> greatest_pal("abc")
-#     'a'
-#     >>> greatest_pal("")
-#     ''
-#     """
-#     if len(s)<=1:
-#         return s
-#     left, right = s[0],s[-1]
-#     if ___________________________________________________________________________:
-#         return ____________________________________________________________________
-#     return ____________________________________________________________________
+def greatest_pal(s):
+    """
+    >>> greatest_pal("tenet")
+    'tenet'
+    >>> greatest_pal("tenets")
+    'tenet'
+    >>> greatest_pal("stennet")
+    'tennet'
+    >>> greatest_pal("25 racecars")
+    'racecar'
+    >>> greatest_pal("abc")
+    'a'
+    >>> greatest_pal("")
+    ''
+    """
+    
+    if len(s)<=1:
+        return s
+    left, right = s[0],s[-1]
+    if ...:
+        return ...
+    return ...
 
 # def greatest_pal(s):
 #     """
