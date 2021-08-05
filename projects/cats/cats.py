@@ -206,7 +206,7 @@ def minimum_mewtations(start, goal, limit):
     >>> minimum_mewtations("ckiteus", "kittens", big_limit) # ckiteus -> kiteus -> kitteus -> kittens
     3
     """
-    assert False, 'Remove this line'
+    # assert False, 'Remove this line'
 
     if ______________:  # Fill in the condition
         # BEGIN
