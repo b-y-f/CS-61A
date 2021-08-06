@@ -206,25 +206,23 @@ def minimum_mewtations(start, goal, limit):
     >>> minimum_mewtations("ckiteus", "kittens", big_limit) # ckiteus -> kiteus -> kitteus -> kittens
     3
     """
+    # TODO need understand
     # assert False, 'Remove this line'
+    def dp(i, j):
+        if i == -1: return j + 1
+        if j == -1: return i + 1
 
-    if ______________:  # Fill in the condition
-        # BEGIN
-        "*** YOUR CODE HERE ***"
-        # END
+        if start[i] == goal[j]:
+            return dp(i - 1, j - 1)
+        else:
+            return min(
+                dp(i, j - 1) + 1,
+                dp(i - 1, j) + 1,
+                dp(i - 1, j - 1) + 1
+            )
 
-    elif ___________:  # Feel free to remove or add additional cases
-        # BEGIN
-        "*** YOUR CODE HERE ***"
-        # END
+    return dp(len(start) - 1, len(goal) - 1)
 
-    else:
-        add = ...  # Fill in these lines
-        remove = ...
-        substitute = ...
-        # BEGIN
-        "*** YOUR CODE HERE ***"
-        # END
 
 
 def final_diff(start, goal, limit):
@@ -266,6 +264,16 @@ def report_progress(sofar, prompt, user_id, send):
     """
     # BEGIN PROBLEM 8
     "*** YOUR CODE HERE ***"
+    correct = 0
+
+    for i in range(len(sofar)):
+        if sofar[i] != prompt[i]:
+            break
+        correct += 1
+
+    progress = correct/len(prompt)
+    print('ID:',user_id,'Progress:',progress)
+    print(progress)
     # END PROBLEM 8
 
 
