@@ -307,6 +307,12 @@ def time_per_word(times_per_player, words):
     """
     # BEGIN PROBLEM 9
     "*** YOUR CODE HERE ***"
+    player_times =[]
+    for player_index in range(len(times_per_player)):
+        t = times_per_player[player_index]
+        player_times.append([(t[i+1] - t[i]) for i in range(len(t)-1)])
+
+    return game(words,player_times)
     # END PROBLEM 9
 
 
