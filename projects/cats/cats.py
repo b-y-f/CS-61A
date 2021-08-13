@@ -328,7 +328,11 @@ def fastest_words(game):
     word_indices = range(len(get_words(game)))    # contains an *index* for each word
     # BEGIN PROBLEM 10
     "*** YOUR CODE HERE ***"
-    
+    ret_list = [[] for _ in player_indices]
+    min_index = [min(range(len(list(i))),key=list(i).__getitem__) for i in zip(*get_times(game))]
+    for i in word_indices:
+        ret_list[min_index[i]].append(get_words(game)[i])
+    return ret_list
     # END PROBLEM 10
 
 
