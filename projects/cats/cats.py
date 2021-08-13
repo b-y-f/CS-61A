@@ -206,22 +206,19 @@ def minimum_mewtations(start, goal, limit):
     >>> minimum_mewtations("ckiteus", "kittens", big_limit) # ckiteus -> kiteus -> kitteus -> kittens
     3
     """
-    # TODO need understand
-    # assert False, 'Remove this line'
-    def dp(i, j):
-        if i == -1: return j + 1
-        if j == -1: return i + 1
-
-        if start[i] == goal[j]:
-            return dp(i - 1, j - 1)
-        else:
-            return min(
-                dp(i, j - 1) + 1,
-                dp(i - 1, j) + 1,
-                dp(i - 1, j - 1) + 1
-            )
-
-    return dp(len(start) - 1, len(goal) - 1)
+    # BEGIN PROBLEM 7
+    # TODO 
+    if limit < 0: return 1
+    elif start == goal: return 0
+    elif min(len(start),len(goal))==0:
+        return max(len(start),len(goal))
+    else:
+        dif= goal[0]!=start[0]
+        add = minimum_mewtations(start, goal[1:],limit-1) + 1
+        remove = minimum_mewtations(start[1:], goal,limit-1) +1
+        substitute = dif + minimum_mewtations(start[1:],goal[1:], limit-dif)
+    return min(add,remove,substitute)
+    # END PROBLEM 7
 
 
 
@@ -331,6 +328,7 @@ def fastest_words(game):
     word_indices = range(len(get_words(game)))    # contains an *index* for each word
     # BEGIN PROBLEM 10
     "*** YOUR CODE HERE ***"
+    
     # END PROBLEM 10
 
 
