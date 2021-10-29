@@ -1,6 +1,6 @@
 {
     "name": "Lab 3",
-    "endpoint": "cal/cs61a/su21/lab03",
+    "endpoint": "cal/cs61a/fa21/lab03",
     "src": [
         "lab03.py"
     ],
@@ -9,11 +9,12 @@
         "tests/*.py": "ok_test"
     },
     "default_tests": [
-        "recursion-wwpd",
-        "drill-wwpd",
-        "summation",
-        "pascal",
-        "paths"
+        "unique_digits",
+        "ordered_digits",
+        "get_k_run_starter",
+        "make_repeater",
+        "apply_twice",
+        "protected_secret"
     ],
     "protocols": [
         "restore",
