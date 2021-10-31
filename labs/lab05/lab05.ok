@@ -1,6 +1,6 @@
 {
     "name": "Lab 5",
-    "endpoint": "cal/cs61a/su21/lab05",
+    "endpoint": "cal/cs61a/fa21/lab05",
     "src": [
         "lab05.py"
     ],
@@ -9,11 +9,12 @@
         "tests/*.py": "ok_test"
     },
     "default_tests": [
-        "list-mutation",
-        "map",
-        "swap",
-        "wwpd-complexity",
-        "lgk_pow"
+        "factors_list",
+        "flatten",
+        "distance",
+        "closer_city",
+        "berry_finder",
+        "sprout_leaves"
     ],
     "protocols": [
         "restore",
