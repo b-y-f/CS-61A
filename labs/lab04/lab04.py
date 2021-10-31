@@ -20,6 +20,10 @@ def summation(n, term):
     """
     assert n >= 1
     "*** YOUR CODE HERE ***"
+    if n==1:
+        return term(n)
+    else:
+        return term(n) + summation(n-1,term)
 
 
 def pascal(row, column):
@@ -35,6 +39,12 @@ def pascal(row, column):
     6
     """
     "*** YOUR CODE HERE ***"
+    if column == row or column== 0:
+        return 1
+    elif column > row:
+        return 0
+    else:
+        return pascal(row-1,column-1) + pascal(row-1,column)
 
 
 def paths(m, n):
@@ -51,7 +61,13 @@ def paths(m, n):
     1
     """
     "*** YOUR CODE HERE ***"
-
+    def h(x,y):
+        if x == m-1 or y == n-1:
+            return 1
+        else:
+            return h(x+1,y)+h(x,y+1)
+    return h(0,0)
+ 
 
 def couple(s, t):
     """Return a list of two-element lists in which the i-th element is [s[i], t[i]].
@@ -67,6 +83,8 @@ def couple(s, t):
     """
     assert len(s) == len(t)
     "*** YOUR CODE HERE ***"
+    # return [[s[i],t[j]] for i in range(len(s)) for j in range(len(t)) if i==j ]
+    return [[s[i],t[i]] for i in range((len(s)))]
 
 
 def coords(fn, seq, lower, upper):
