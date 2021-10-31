@@ -23,6 +23,16 @@ def num_eights(pos):
     True
     """
     "*** YOUR CODE HERE ***"
+    if pos!=8 and pos//10==0:
+        return 0
+    else:
+        if pos % 10 == 8:
+            return 1 + num_eights(pos//10)
+        else:
+            return num_eights(pos//10)
+
+
+
 
 
 def pingpong(n):
@@ -59,7 +69,14 @@ def pingpong(n):
     True
     """
     "*** YOUR CODE HERE ***"
-
+    def h(result , i, dir):
+        if i == n :
+            return result
+        elif i % 8 == 0 or num_eights(i) > 0:
+            return h(result-dir,i+1,-dir)
+        else:
+            return h(result+dir,i+1,dir)
+    return h(1,1,1)
 
 def missing_digits(n):
     """Given a number a that is in sorted, non-decreasing order,
@@ -89,6 +106,17 @@ def missing_digits(n):
     True
     """
     "*** YOUR CODE HERE ***"
+    if n<10 :
+        return 0
+    else:
+        last, rest = n%10, n//10
+        if last-rest%10>0:
+            return last - rest % 10 + missing_digits(rest)-1
+        else:
+            return missing_digits(rest)
+
+
+
 
 
 def ascending_coin(coin):
@@ -145,8 +173,18 @@ def count_coins(change):
     True
     """
     "*** YOUR CODE HERE ***"
+    def h(n,m):
+        if n == 0:
+            return 1
+        elif n < 0:
+            return 0
+        elif m == None:
+            return 0
+        else:
+            return h(n-m,m) + h(n, descending_coin(m))
+    return h(change, 25)
 
-
+# TODO for fun
 def print_move(origin, destination):
     """Print instructions to move a disk."""
     print("Move the top disk from rod", origin, "to rod", destination)
