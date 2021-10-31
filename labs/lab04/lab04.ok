@@ -1,6 +1,6 @@
 {
     "name": "Lab 4",
-    "endpoint": "cal/cs61a/su21/lab04",
+    "endpoint": "cal/cs61a/fa21/lab04",
     "src": [
         "lab04.py"
     ],
@@ -9,13 +9,11 @@
         "tests/*.py": "ok_test"
     },
     "default_tests": [
-        "couple",
-        "distance",
-        "closer_city",
-        "check_city_abstraction",
-        "berry_finder",
-        "sprout_leaves",
-        "check_abstraction"
+        "drill-wwpd",
+        "summation",
+        "paths",
+        "pascal",
+        "couple"
     ],
     "protocols": [
         "restore",

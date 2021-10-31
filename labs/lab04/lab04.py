@@ -1,3 +1,58 @@
+HW_SOURCE_FILE = __file__
+
+
+def summation(n, term):
+    """Return the sum of numbers 1 through n (including n) wíth term applied to each number.
+    Implement using recursion!
+
+    >>> summation(5, lambda x: x * x * x) # 1^3 + 2^3 + 3^3 + 4^3 + 5^3
+    225
+    >>> summation(9, lambda x: x + 1) # 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10
+    54
+    >>> summation(5, lambda x: 2**x) # 2^1 + 2^2 + 2^3 + 2^4 + 2^5
+    62
+    >>> # Do not use while/for loops!
+    >>> from construct_check import check
+    >>> # ban iteration
+    >>> check(HW_SOURCE_FILE, 'summation',
+    ...       ['While', 'For'])
+    True
+    """
+    assert n >= 1
+    "*** YOUR CODE HERE ***"
+
+
+def pascal(row, column):
+    """Returns the value of the item in Pascal's Triangle 
+    whose position is specified by row and column.
+    >>> pascal(0, 0)
+    1
+    >>> pascal(0, 5)	# Empty entry; outside of Pascal's Triangle
+    0
+    >>> pascal(3, 2)	# Row 3 (1 3 3 1), Column 2
+    3
+    >>> pascal(4, 2)     # Row 4 (1 4 6 4 1), Column 2
+    6
+    """
+    "*** YOUR CODE HERE ***"
+
+
+def paths(m, n):
+    """Return the number of paths from one corner of an
+    M by N grid to the opposite corner.
+
+    >>> paths(2, 2)
+    2
+    >>> paths(5, 7)
+    210
+    >>> paths(117, 1)
+    1
+    >>> paths(1, 157)
+    1
+    """
+    "*** YOUR CODE HERE ***"
+
+
 def couple(s, t):
     """Return a list of two-element lists in which the i-th element is [s[i], t[i]].
 
@@ -12,242 +67,6 @@ def couple(s, t):
     """
     assert len(s) == len(t)
     "*** YOUR CODE HERE ***"
-    return [list(i) for i in zip(s,t)]
-
-
-from math import sqrt
-
-
-def distance(city_a, city_b):
-    """
-    >>> city_a = make_city('city_a', 0, 1)
-    >>> city_b = make_city('city_b', 0, 2)
-    >>> distance(city_a, city_b)
-    1.0
-    >>> city_c = make_city('city_c', 6.5, 12)
-    >>> city_d = make_city('city_d', 2.5, 15)
-    >>> distance(city_c, city_d)
-    5.0
-    """
-    "*** YOUR CODE HERE ***"
-    return sqrt((get_lat(city_a)-get_lat(city_b))**2 + (get_lon(city_a)-get_lon(city_b))**2)
-
-
-def closer_city(lat, lon, city_a, city_b):
-    """
-    Returns the name of either city_a or city_b, whichever is closest to
-    coordinate (lat, lon). If the two cities are the same distance away
-    from the coordinate, consider city_b to be the closer city.
-
-    >>> berkeley = make_city('Berkeley', 37.87, 112.26)
-    >>> stanford = make_city('Stanford', 34.05, 118.25)
-    >>> closer_city(38.33, 121.44, berkeley, stanford)
-    'Stanford'
-    >>> bucharest = make_city('Bucharest', 44.43, 26.10)
-    >>> vienna = make_city('Vienna', 48.20, 16.37)
-    >>> closer_city(41.29, 174.78, bucharest, vienna)
-    'Bucharest'
-    """
-    "*** YOUR CODE HERE ***"
-    pt = make_city('pt',lat,lon)
-    return get_name(city_a) if distance(pt,city_a)<distance(pt,city_b) else get_name(city_b)
-
-
-def check_city_abstraction():
-    """
-    There's nothing for you to do for this function, it's just here for the extra doctest
-    >>> change_abstraction(True)
-    >>> city_a = make_city('city_a', 0, 1)
-    >>> city_b = make_city('city_b', 0, 2)
-    >>> distance(city_a, city_b)
-    1.0
-    >>> city_c = make_city('city_c', 6.5, 12)
-    >>> city_d = make_city('city_d', 2.5, 15)
-    >>> distance(city_c, city_d)
-    5.0
-    >>> berkeley = make_city('Berkeley', 37.87, 112.26)
-    >>> stanford = make_city('Stanford', 34.05, 118.25)
-    >>> closer_city(38.33, 121.44, berkeley, stanford)
-    'Stanford'
-    >>> bucharest = make_city('Bucharest', 44.43, 26.10)
-    >>> vienna = make_city('Vienna', 48.20, 16.37)
-    >>> closer_city(41.29, 174.78, bucharest, vienna)
-    'Bucharest'
-    >>> change_abstraction(False)
-    """
-
-
-# Treat all the following code as being behind an abstraction layer, you shouldn't need to look at it!
-
-def make_city(name, lat, lon):
-    """
-    >>> city = make_city('Berkeley', 0, 1)
-    >>> get_name(city)
-    'Berkeley'
-    >>> get_lat(city)
-    0
-    >>> get_lon(city)
-    1
-    """
-    if change_abstraction.changed:
-        return {"name": name, "lat": lat, "lon": lon}
-    else:
-        return [name, lat, lon]
-
-
-def get_name(city):
-    """
-    >>> city = make_city('Berkeley', 0, 1)
-    >>> get_name(city)
-    'Berkeley'
-    """
-    if change_abstraction.changed:
-        return city["name"]
-    else:
-        return city[0]
-
-
-def get_lat(city):
-    """
-    >>> city = make_city('Berkeley', 0, 1)
-    >>> get_lat(city)
-    0
-    """
-    if change_abstraction.changed:
-        return city["lat"]
-    else:
-        return city[1]
-
-
-def get_lon(city):
-    """
-    >>> city = make_city('Berkeley', 0, 1)
-    >>> get_lon(city)
-    1
-    """
-    if change_abstraction.changed:
-        return city["lon"]
-    else:
-        return city[2]
-
-
-def change_abstraction(change):
-    change_abstraction.changed = change
-
-
-change_abstraction.changed = False
-
-
-def berry_finder(t):
-    """Returns True if t contains a node with the value 'berry' and 
-    False otherwise.
-
-    >>> scrat = tree('berry')
-    >>> berry_finder(scrat)
-    True
-    >>> sproul = tree('roots', [tree('branch1', [tree('leaf'), tree('berry')]), tree('branch2')])
-    >>> berry_finder(sproul)
-    True
-    >>> numbers = tree(1, [tree(2), tree(3, [tree(4), tree(5)]), tree(6, [tree(7)])])
-    >>> berry_finder(numbers)
-    False
-    >>> t = tree(1, [tree('berry',[tree('not berry')])])
-    >>> berry_finder(t)
-    True
-    """
-    "*** YOUR CODE HERE ***"
-    # TODO
-    while 'berry' not in branches(t):
-        
-
-
-
-def sprout_leaves(t, leaves):
-    """Sprout new leaves containing the data in leaves at each leaf in
-    the original tree t and return the resulting tree.
-
-    >>> t1 = tree(1, [tree(2), tree(3)])
-    >>> print_tree(t1)
-    1
-      2
-      3
-    >>> new1 = sprout_leaves(t1, [4, 5])
-    >>> print_tree(new1)
-    1
-      2
-        4
-        5
-      3
-        4
-        5
-
-    >>> t2 = tree(1, [tree(2, [tree(3)])])
-    >>> print_tree(t2)
-    1
-      2
-        3
-    >>> new2 = sprout_leaves(t2, [6, 1, 2])
-    >>> print_tree(new2)
-    1
-      2
-        3
-          6
-          1
-          2
-    """
-    "*** YOUR CODE HERE ***"
-    # TODO hard
-
-
-
-
-# Abstraction tests for sprout_leaves and berry_finder
-def check_abstraction():
-    """
-    There's nothing for you to do for this function, it's just here for the extra doctest
-    >>> change_abstraction(True)
-    >>> scrat = tree('berry')
-    >>> berry_finder(scrat)
-    True
-    >>> sproul = tree('roots', [tree('branch1', [tree('leaf'), tree('berry')]), tree('branch2')])
-    >>> berry_finder(sproul)
-    True
-    >>> numbers = tree(1, [tree(2), tree(3, [tree(4), tree(5)]), tree(6, [tree(7)])])
-    >>> berry_finder(numbers)
-    False
-    >>> t = tree(1, [tree('berry',[tree('not berry')])])
-    >>> berry_finder(t)
-    True
-    >>> t1 = tree(1, [tree(2), tree(3)])
-    >>> print_tree(t1)
-    1
-      2
-      3
-    >>> new1 = sprout_leaves(t1, [4, 5])
-    >>> print_tree(new1)
-    1
-      2
-        4
-        5
-      3
-        4
-        5
-
-    >>> t2 = tree(1, [tree(2, [tree(3)])])
-    >>> print_tree(t2)
-    1
-      2
-        3
-    >>> new2 = sprout_leaves(t2, [6, 1, 2])
-    >>> print_tree(new2)
-    1
-      2
-        3
-          6
-          1
-          2
-    >>> change_abstraction(False)
-    """
 
 
 def coords(fn, seq, lower, upper):
@@ -258,7 +77,7 @@ def coords(fn, seq, lower, upper):
     [[-2, 4], [1, 1], [3, 9]]
     """
     "*** YOUR CODE HERE ***"
-    return [[i,fn(i)] for i in seq if fn(i) in range(lower,upper+1)]
+    return ______
 
 
 def riffle(deck):
@@ -271,214 +90,4 @@ def riffle(deck):
     [0, 10, 1, 11, 2, 12, 3, 13, 4, 14, 5, 15, 6, 16, 7, 17, 8, 18, 9, 19]
     """
     "*** YOUR CODE HERE ***"
-    return [ deck[  (i%2) * (len(deck)//2) + i//2 ] for i in range(len(deck))]
-
-
-def add_trees(t1, t2):
-    """
-    >>> numbers = tree(1,
-    ...                [tree(2,
-    ...                      [tree(3),
-    ...                       tree(4)]),
-    ...                 tree(5,
-    ...                      [tree(6,
-    ...                            [tree(7)]),
-    ...                       tree(8)])])
-    >>> print_tree(add_trees(numbers, numbers))
-    2
-      4
-        6
-        8
-      10
-        12
-          14
-        16
-    >>> print_tree(add_trees(tree(2), tree(3, [tree(4), tree(5)])))
-    5
-      4
-      5
-    >>> print_tree(add_trees(tree(2, [tree(3)]), tree(2, [tree(3), tree(4)])))
-    4
-      6
-      4
-    >>> print_tree(add_trees(tree(2, [tree(3, [tree(4), tree(5)])]), \
-    tree(2, [tree(3, [tree(4)]), tree(5)])))
-    4
-      6
-        8
-        5
-      5
-    """
-    "*** YOUR CODE HERE ***"
-
-
-def build_successors_table(tokens):
-    """Return a dictionary: keys are words; values are lists of successors.
-
-    >>> text = ['We', 'came', 'to', 'investigate', ',', 'catch', 'bad', 'guys', 'and', 'to', 'eat', 'pie', '.']
-    >>> table = build_successors_table(text)
-    >>> sorted(table)
-    [',', '.', 'We', 'and', 'bad', 'came', 'catch', 'eat', 'guys', 'investigate', 'pie', 'to']
-    >>> table['to']
-    ['investigate', 'eat']
-    >>> table['pie']
-    ['.']
-    >>> table['.']
-    ['We']
-    """
-    table = {}
-    prev = '.'
-    for word in tokens:
-        if prev not in table:
-            "*** YOUR CODE HERE ***"
-            table[prev]=[]
-        "*** YOUR CODE HERE ***"
-        table[prev].append(word)
-        prev = word
-    return table  # {'.': ['We'], 'We': ['came'], 'came': ['to'], 'to': ['investigate', 'eat'], 'investigate': [','], ',': ['catch'], 'catch': ['bad'], 'bad': ['guys'], 'guys': ['and'], 'and': ['to'], 'eat': ['pie'], 'pie': ['.']}
-
-
-def construct_sent(word, table):
-    """Prints a random sentence starting with word, sampling from
-    table.
-
-    >>> table = {'Wow': ['!'], 'Sentences': ['are'], 'are': ['cool'], 'cool': ['.']}
-    >>> construct_sent('Wow', table)
-    'Wow!'
-    >>> construct_sent('Sentences', table)
-    'Sentences are cool.'
-    """
-    import random
-    result = ''
-    while word not in ['.', '!', '?']:
-        "*** YOUR CODE HERE ***"
-        result += word + ' '
-
-        lst = table[word]
-        rand_index = random.randint(0,len(lst)-1)
-        word = table[word][rand_index]
-       
-
-    return result.strip() + word
-
-
-
-# ===========================================================================
-
-
-def shakespeare_tokens(path='shakespeare.txt', url='http://composingprograms.com/shakespeare.txt'):
-    """Return the words of Shakespeare's plays as a list."""
-    import os
-    from urllib.request import urlopen
-    if os.path.exists(path):
-        return open(path, encoding='ascii').read().split()
-    else:
-        shakespeare = urlopen(url)
-        return shakespeare.read().decode(encoding='ascii').split()
-
-# Uncomment the following two lines
-# tokens = shakespeare_tokens()
-# table = build_successors_table(tokens)
-
-
-def random_sent():
-    import random
-    return construct_sent(random.choice(table['.']), table)
-
-
-# Tree ADT
-
-def tree(label, branches=[]):
-    """Construct a tree with the given label value and a list of branches."""
-    if change_abstraction.changed:
-        for branch in branches:
-            assert is_tree(branch), 'branches must be trees'
-        return {'label': label, 'branches': list(branches)}
-    else:
-        for branch in branches:
-            assert is_tree(branch), 'branches must be trees'
-        return [label] + list(branches)
-
-
-def label(tree):
-    """Return the label value of a tree."""
-    if change_abstraction.changed:
-        return tree['label']
-    else:
-        return tree[0]
-
-
-def branches(tree):
-    """Return the list of branches of the given tree."""
-    if change_abstraction.changed:
-        return tree['branches']
-    else:
-        return tree[1:]
-
-
-def is_tree(tree):
-    """Returns True if the given tree is a tree, and False otherwise."""
-    if change_abstraction.changed:
-        if type(tree) != dict or len(tree) != 2:
-            return False
-        for branch in branches(tree):
-            if not is_tree(branch):
-                return False
-        return True
-    else:
-        if type(tree) != list or len(tree) < 1:
-            return False
-        for branch in branches(tree):
-            if not is_tree(branch):
-                return False
-        return True
-
-
-def is_leaf(tree):
-    """Returns True if the given tree's list of branches is empty, and False
-    otherwise.
-    """
-    return not branches(tree)
-
-
-def change_abstraction(change):
-    change_abstraction.changed = change
-
-
-change_abstraction.changed = False
-
-
-def print_tree(t, indent=0):
-    """Print a representation of this tree in which each node is
-    indented by two spaces times its depth from the root.
-
-    >>> print_tree(tree(1))
-    1
-    >>> print_tree(tree(1, [tree(2)]))
-    1
-      2
-    >>> numbers = tree(1, [tree(2), tree(3, [tree(4), tree(5)]), tree(6, [tree(7)])])
-    >>> print_tree(numbers)
-    1
-      2
-      3
-        4
-        5
-      6
-        7
-    """
-    print('  ' * indent + str(label(t)))
-    for b in branches(t):
-        print_tree(b, indent + 1)
-
-
-def copy_tree(t):
-    """Returns a copy of t. Only for testing purposes.
-
-    >>> t = tree(5)
-    >>> copy = copy_tree(t)
-    >>> t = tree(6)
-    >>> print_tree(copy)
-    5
-    """
-    return tree(label(t), [copy_tree(b) for b in branches(t)])
+    return _______
