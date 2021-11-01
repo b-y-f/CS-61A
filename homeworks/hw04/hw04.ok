@@ -1,6 +1,6 @@
 {
     "name": "Homework 4",
-    "endpoint": "cal/cs61a/su21/hw04",
+    "endpoint": "cal/cs61a/fa21/hw04",
     "src": [
         "hw04.py"
     ],
@@ -9,9 +9,11 @@
         "tests/*.py": "ok_test"
     },
     "default_tests": [
-        "repeated",
-        "permutations",
-        "make_generators_generator"
+        "total_weight",
+        "balanced",
+        "totals_tree",
+        "replace_loki_at_leaf",
+        "has_path"
     ],
     "protocols": [
         "restore",
