@@ -1,6 +1,6 @@
 {
     "name": "Lab 6",
-    "endpoint": "cal/cs61a/su21/lab06",
+    "endpoint": "cal/cs61a/fa21/lab06",
     "src": [
         "lab06.py"
     ],
@@ -8,7 +8,13 @@
         "lab*.py": "doctest",
         "tests/*.py": "ok_test"
     },
-    "default_tests": [],
+    "default_tests": [
+        "list-mutation",
+        "insert_items",
+        "iterators-wwpd",
+        "count_occurrences",
+        "repeated"
+    ],
     "protocols": [
         "restore",
         "file_contents",
