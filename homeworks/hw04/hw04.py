@@ -51,14 +51,13 @@ def end(s):
 def planet(size):
     """Construct a planet of some size."""
     assert size > 0
-    "*** YOUR CODE HERE  ***"
+    return ['planet', size]
 
 
 def size(w):
     """Select the size of a planet."""
     assert is_planet(w), 'must call size on a planet'
-    "*** YOUR CODE HERE ***"
-
+    return w[1]
 
 def is_planet(w):
     """Whether w is a planet."""
@@ -118,6 +117,12 @@ def balanced(m):
     True
     """
     "*** YOUR CODE HERE ***"
+    # TODO redo
+    if is_planet(m):
+        return True
+    left_end, right_end = end(left(m)), end(right(m))
+    left_torque, right_torque = total_weight(left_end)*length(left(m)), total_weight(right_end) * length(right(m))
+    return left_torque == right_torque and balanced(left_end) and balanced(right_end)
 
 
 def totals_tree(m):
@@ -150,6 +155,10 @@ def totals_tree(m):
     True
     """
     "*** YOUR CODE HERE ***"
+    if is_planet(m):
+        return tree(size(m))
+    branches = [totals_tree(end(fc(m))) for fc in [left, right]]
+    return tree(sum([label(i) for i in branches]),branches)
 
 
 def replace_loki_at_leaf(t, lokis_replacement):
@@ -182,6 +191,10 @@ def replace_loki_at_leaf(t, lokis_replacement):
     True
     """
     "*** YOUR CODE HERE ***"
+    if is_leaf(t) and label(t) == "loki" :
+        return tree(lokis_replacement)
+    return tree(label(t), [replace_loki_at_leaf(b,lokis_replacement) for b in branches(t)])
+
 
 
 def has_path(t, word):
@@ -207,16 +220,33 @@ def has_path(t, word):
     True
     >>> has_path(greetings, 'hello')
     True
+    >>> has_path(greetings, 'llo') # root have to be with first char of word !!!
+    False
     >>> has_path(greetings, 'hey')
     True
     >>> has_path(greetings, 'bye')
     False
     >>> has_path(greetings, 'hint')
     False
+    >>> has_path(greetings, 'a')
+    False
     """
     assert len(word) > 0, 'no path for empty word.'
     "*** YOUR CODE HERE ***"
+    # TODO
+    if label(t) != word[0]:
+        return False
+    elif len(word) == 1:
+        return True
+    for b in branches(t):
+        if has_path(b, word[1:]):
+            return True
+    return False
 
+
+
+
+# TODO Optional Questions
 
 def preorder(t):
     """Return a list of the entries in this tree in the order that they
