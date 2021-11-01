@@ -289,7 +289,7 @@ def change_abstraction(change):
 change_abstraction.changed = False
 
 
-# TODO Tree ADT
+# Tree ADT
 def tree(label, branches=[]):
     """Construct a tree with the given label value and a list of branches."""
     if change_abstraction.changed:
