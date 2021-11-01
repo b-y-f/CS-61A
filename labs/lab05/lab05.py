@@ -11,6 +11,7 @@ def factors_list(n):
     """
     all_factors = []
     "*** YOUR CODE HERE ***"
+    return [1] + [x for x in range(2, n) if n % x == 0]
 
 
 def flatten(s):
@@ -30,6 +31,12 @@ def flatten(s):
     [[1, [1, 1]], 1, [1, 1]]
     """
     "*** YOUR CODE HERE ***"
+    if not s:
+        return []
+    elif type(s[0]) == list:
+        return flatten(s[0])+flatten(s[1:])
+    else:
+        return [s[0]] + flatten(s[1:])
 
 
 from math import sqrt
@@ -47,6 +54,9 @@ def distance(city_a, city_b):
     5.0
     """
     "*** YOUR CODE HERE ***"
+    x = abs(get_lat(city_a)-get_lat(city_b))
+    y = abs(get_lon(city_a)-get_lon(city_b))
+    return sqrt(x*x + y*y)
 
 
 def closer_city(lat, lon, city_a, city_b):
@@ -65,6 +75,10 @@ def closer_city(lat, lon, city_a, city_b):
     'Bucharest'
     """
     "*** YOUR CODE HERE ***"
+    target = make_city('target', lat, lon)
+    if distance(target, city_a) > distance(target, city_b):
+        return get_name(city_b)
+    return get_name(city_a)
 
 
 def check_city_abstraction():
@@ -164,6 +178,12 @@ def berry_finder(t):
     True
     """
     "*** YOUR CODE HERE ***"
+    if label(t) == "berry":
+        return True
+    for i in branches(t):
+        if berry_finder(i):
+            return True
+    return False
 
 
 def sprout_leaves(t, leaves):
@@ -200,6 +220,10 @@ def sprout_leaves(t, leaves):
           2
     """
     "*** YOUR CODE HERE ***"
+    if is_leaf(t):
+        return tree(label(t), [tree(l) for l in leaves])
+    return tree(label(t), [sprout_leaves(b, leaves) for b in branches(t)])
+    
 
 # Abstraction tests for sprout_leaves and berry_finder
 
@@ -265,8 +289,7 @@ def change_abstraction(change):
 change_abstraction.changed = False
 
 
-# Tree ADT
-
+# TODO Tree ADT
 def tree(label, branches=[]):
     """Construct a tree with the given label value and a list of branches."""
     if change_abstraction.changed:
