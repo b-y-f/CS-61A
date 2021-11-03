@@ -79,7 +79,9 @@ def ordered_digits(x):
 
 
 def get_k_run_starter(n, k):
-    """
+    """ k is the index of non-sequence number
+        return left first digital in k index
+
     >>> get_k_run_starter(123444345, 0) # example from description
     3
     >>> get_k_run_starter(123444345, 1)
@@ -100,12 +102,12 @@ def get_k_run_starter(n, k):
     # TODO
     i = 0
     final = None
-    while i<k:
-        while ____________________________:
-            ____________________________
-        final = ____________________________
-        i = ____________________________
-        n = ____________________________
+    while i<=k:
+        while ...:
+            ...
+        ...
+        ...
+        ...
     return final
 
 
