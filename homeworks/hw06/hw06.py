@@ -147,7 +147,7 @@ def store_digits(n):
     >>> link1 = Link(3, Link(Link(4), Link(5, Link(6))))
     """
     "*** YOUR CODE HERE ***"
-
+    # TODO
 
 def deep_map_mut(fn, link):
     """Mutates a deep link by replacing each item found with the
@@ -167,6 +167,7 @@ def deep_map_mut(fn, link):
     <9 <16> 25 36>
     """
     "*** YOUR CODE HERE ***"
+    # TODO 
 
 
 def two_list(vals, amounts):
@@ -189,8 +190,15 @@ def two_list(vals, amounts):
     Link(1, Link(1, Link(3, Link(3, Link(2)))))
     """
     "*** YOUR CODE HERE ***"
+    length = len(vals)
+    result = Link.empty
+    for i in range(length-1,-1,-1):
+        repeat = amounts[i]
+        for _ in range(repeat):
+            result = Link(vals[i], result)
+    return result
 
-
+# TODO
 class VirFib():
     """A Virahanka Fibonacci number.
 
