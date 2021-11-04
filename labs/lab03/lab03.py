@@ -99,15 +99,14 @@ def get_k_run_starter(n, k):
     >>> get_k_run_starter(1234234534564567, 2)
     2
     """
-    # TODO
     i = 0
     final = None
     while i<=k:
-        while ...:
-            ...
-        ...
-        ...
-        ...
+        while n % 10 -1 == n//10%10 and n>9:
+            n = n // 10
+        final = n % 10
+        i += 1
+        n = n //10
     return final
 
 

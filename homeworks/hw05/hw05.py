@@ -21,7 +21,7 @@ def gen_perms(seq):
     [['a', 'b'], ['b', 'a']]
     """
     "*** YOUR CODE HERE ***"
-    # TODO
+    # TODO today
 
 
 def path_yielder(t, value):

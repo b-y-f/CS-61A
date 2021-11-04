@@ -57,20 +57,33 @@ def filter_iter(iterable, fn):
         if fn(i):
             yield i
 
-# def merge(a, b):
-#     """
-#     >>> def sequence(start, step):
-#     ...     while True:
-#     ...         yield start
-#     ...         start += step
-#     >>> a = sequence(2, 3) # 2, 5, 8, 11, 14, ...
-#     >>> b = sequence(3, 2) # 3, 5, 7, 9, 11, 13, 15, ...
-#     >>> result = merge(a, b) # 2, 3, 5, 7, 8, 9, 11, 13, 14, 15
-#     >>> [next(result) for _ in range(10)]
-#     [2, 3, 5, 7, 8, 9, 11, 13, 14, 15]
-#     """
-#     "*** YOUR CODE HERE ***"
-    # TODO
+def merge(a, b):
+    """
+    >>> def sequence(start, step):
+    ...     while True:
+    ...         yield start
+    ...         start += step
+    >>> a = sequence(2, 3) # 2, 5, 8, 11, 14, ...
+    >>> b = sequence(3, 2) # 3, 5, 7, 9, 11, 13, 15, ...
+    >>> result = merge(a, b) # 2, 3, 5, 7, 8, 9, 11, 13, 14, 15
+    >>> [next(result) for _ in range(10)]
+    [2, 3, 5, 7, 8, 9, 11, 13, 14, 15]
+    """
+    "*** YOUR CODE HERE ***"
+    currA = next(a)
+    currB = next(b)
+    while True:
+        if currA < currB:
+            yield currA
+            currA = next(a)
+
+        elif currA == currB:
+            yield currA
+            currA, currB = next(a), next(b)
+
+        else:
+            yield currB
+            currB = next(b)
 
 def is_prime(n):
     """Returns True if n is a prime number and False otherwise.

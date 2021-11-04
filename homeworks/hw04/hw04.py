@@ -117,12 +117,7 @@ def balanced(m):
     True
     """
     "*** YOUR CODE HERE ***"
-    # TODO redo
-    if is_planet(m):
-        return True
-    left_end, right_end = end(left(m)), end(right(m))
-    left_torque, right_torque = total_weight(left_end)*length(left(m)), total_weight(right_end) * length(right(m))
-    return left_torque == right_torque and balanced(left_end) and balanced(right_end)
+    # TODO hint: use --> total_weight
 
 
 def totals_tree(m):
@@ -233,10 +228,7 @@ def has_path(t, word):
     """
     assert len(word) > 0, 'no path for empty word.'
     "*** YOUR CODE HERE ***"
-    # TODO
-
-
-
+    # TODO t
 
 # TODO Optional Questions
 
