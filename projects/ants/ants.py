@@ -1,7 +1,7 @@
 """CS 61A presents Ants Vs. SomeBees."""
 
 import random
-from sys import addaudithook
+from sys import addaudithook, implementation
 from typing import Tuple
 from ucb import main, interact, trace
 from collections import OrderedDict
@@ -136,7 +136,6 @@ class Ant(Insect):
             place.ant = self
         else:
             # BEGIN Problem 8
-            # TODO
             if place.ant.can_contain(self):
                 place.ant.store_ant(self)
             elif self.can_contain(place.ant):
@@ -416,6 +415,22 @@ class BodyguardAnt(ContainerAnt):
 
 # BEGIN Problem 9
 # The TankAnt class
+class TankAnt(ContainerAnt):
+    name = 'Tank'
+    food_cost = 6
+    damage = 1
+    implemented = True
+
+    def __init__(self, health=2):
+        super().__init__(health)
+
+    def action(self, gamestate):
+        super().action(gamestate)
+        cp = self.place.bees[:]
+        for bee in cp:
+            Insect.reduce_health(bee, self.damage)
+        
+
 # END Problem 9
 
 
