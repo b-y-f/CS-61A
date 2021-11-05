@@ -4,7 +4,7 @@ import random
 from sys import addaudithook, implementation
 from typing import Tuple
 from ucb import main, interact, trace
-from collections import OrderedDict
+from collections import OrderedDict, namedtuple
 
 ################
 # Core Classes #
@@ -448,6 +448,12 @@ class Water(Place):
 
 # BEGIN Problem 11
 # The ScubaThrower class
+class ScubaThrower(ThrowerAnt):
+    name = 'Scuba'
+    implemented = True
+    food_cost = 6
+    is_waterproof = True
+    
 # END Problem 11
 
 # BEGIN Problem 12
