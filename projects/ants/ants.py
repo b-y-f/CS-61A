@@ -314,6 +314,34 @@ class WallAnt(Ant):
 
 # BEGIN Problem 7
 # The HungryAnt Class
+class HungryAnt(Ant):
+    name = 'Hungry'
+    food_cost = 4
+    chew_duration = 3
+    implemented = True   # Change to True to view in the GUI
+    
+    def __init__(self, health=1):
+        """Create an Ant with a HEALTH quantity."""
+        super().__init__(health)
+        self.chew_countdown = 0
+
+    def action(self, gamestate):
+        """
+        First, check if it is chewing; if so, decrement its chew_countdown. Otherwise, 
+        eat a random Bee in its place by reducing the Bee's health to 0. 
+        Make sure to set the chew_countdown when a Bee is eaten!
+        """
+        # super hungry mode
+        if self.chew_duration == 0:
+            for bee in self.place.bees:
+                Insect.reduce_health(bee, bee.health)
+        else:
+            if self.chew_countdown != 0:
+                self.chew_countdown -= 1
+            elif self.place.bees!=[]:
+                eaten_bee = random.choice(self.place.bees)
+                Insect.reduce_health(eaten_bee, eaten_bee.health)
+                self.chew_countdown = 3
 # END Problem 7
 
 
