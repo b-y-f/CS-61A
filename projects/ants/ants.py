@@ -1,6 +1,7 @@
 """CS 61A presents Ants Vs. SomeBees."""
 
 import random
+from sys import addaudithook
 from ucb import main, interact, trace
 from collections import OrderedDict
 
@@ -268,7 +269,7 @@ class FireAnt(Ant):
     food_cost = 5
     # OVERRIDE CLASS ATTRIBUTES HERE
     # BEGIN Problem 5
-    implemented = False   # Change to True to view in the GUI
+    implemented = True   # Change to True to view in the GUI
     # END Problem 5
 
     def __init__(self, health=3):
@@ -284,7 +285,20 @@ class FireAnt(Ant):
         """
         # BEGIN Problem 5
         "*** YOUR CODE HERE ***"
-        # END Problem 5
+        more_damage = 0
+
+        cp = self.place.bees[:]
+
+        super().reduce_health(amount)
+
+        if self.health <= 0:
+            more_damage = self.damage
+
+        for bee in cp:
+            Insect.reduce_health(bee, more_damage + amount)
+
+
+    # END Problem 5
 
 # BEGIN Problem 6
 # The WallAnt class
