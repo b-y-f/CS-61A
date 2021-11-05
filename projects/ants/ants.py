@@ -302,6 +302,14 @@ class FireAnt(Ant):
 
 # BEGIN Problem 6
 # The WallAnt class
+class WallAnt(Ant):
+    name = 'Wall'
+    food_cost = 4
+    implemented = True   # Change to True to view in the GUI
+    
+    def __init__(self, health=4):
+        """Create an Ant with a HEALTH quantity."""
+        super().__init__(health)
 # END Problem 6
 
 # BEGIN Problem 7
