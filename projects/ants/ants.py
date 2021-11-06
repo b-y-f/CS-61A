@@ -1,7 +1,6 @@
 """CS 61A presents Ants Vs. SomeBees."""
 
 import random
-from sys import addaudithook, implementation
 from typing import Tuple
 from ucb import main, interact, trace
 from collections import OrderedDict, namedtuple
@@ -110,6 +109,7 @@ class Ant(Insect):
     food_cost = 0
     is_container = False
     # ADD CLASS ATTRIBUTES HERE
+    is_buffed = False
 
     def __init__(self, health=1):
         """Create an Insect with a HEALTH quantity."""
@@ -161,6 +161,9 @@ class Ant(Insect):
         """Double this ants's damage, if it has not already been buffed."""
         # BEGIN Problem 12
         "*** YOUR CODE HERE ***"
+        if not self.is_buffed:
+            self.damage *= 2
+            self.is_buffed = True
         # END Problem 12
 
 
@@ -459,15 +462,16 @@ class ScubaThrower(ThrowerAnt):
 # BEGIN Problem 12
 
 
-class QueenAnt(Ant):  # You should change this line
+class QueenAnt(ScubaThrower):  # You should change this line
 # END Problem 12
     """The Queen of the colony. The game is over if a bee enters her place."""
 
     name = 'Queen'
     food_cost = 7
     # OVERRIDE CLASS ATTRIBUTES HERE
+    is_queen_existed = False
     # BEGIN Problem 12
-    implemented = False   # Change to True to view in the GUI
+    implemented = True   # Change to True to view in the GUI
     # END Problem 12
 
     @classmethod
@@ -478,6 +482,10 @@ class QueenAnt(Ant):  # You should change this line
         """
         # BEGIN Problem 12
         "*** YOUR CODE HERE ***"
+        if not cls.is_queen_existed:
+            cls.is_queen_existed = True  
+            return super().construct(gamestate)
+            
         # END Problem 12
 
     def action(self, gamestate):
@@ -486,6 +494,17 @@ class QueenAnt(Ant):  # You should change this line
         """
         # BEGIN Problem 12
         "*** YOUR CODE HERE ***"
+        super().action(gamestate)
+
+        next_place = self.place.exit
+        while next_place:
+            if next_place.ant:
+                if next_place.ant.is_container and next_place.ant.ant_contained:
+                    next_place.ant.ant_contained.buff()
+
+                next_place.ant.buff()
+            next_place = next_place.exit
+        
         # END Problem 12
 
     def reduce_health(self, amount):
@@ -494,7 +513,18 @@ class QueenAnt(Ant):  # You should change this line
         """
         # BEGIN Problem 12
         "*** YOUR CODE HERE ***"
+        self.health -= amount
+        if self.health <= 0:
+            ants_lose()
         # END Problem 12
+
+    # The queen cannot be removed. Attempts to remove the queen 
+    # should have no effect (but should not cause an error). 
+    # You will need to override Ant.remove_from in QueenAnt to enforce this condition.
+
+    def remove_from(self, place):
+        if place.ant is None:
+            assert False, '{0} is not in {1}'.format(self, place)
 
 
 class AntRemover(Ant):
