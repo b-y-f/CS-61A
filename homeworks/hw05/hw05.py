@@ -21,7 +21,9 @@ def gen_perms(seq):
     [['a', 'b'], ['b', 'a']]
     """
     "*** YOUR CODE HERE ***"
-    # TODO today
+    # TODO
+
+
 
 
 def path_yielder(t, value):
@@ -59,7 +61,7 @@ def path_yielder(t, value):
     [[0, 2], [0, 2, 1, 2]]
     """
     "*** YOUR CODE HERE ***"
-    # TODO 
+    # TODO
     
 
 
@@ -75,11 +77,10 @@ def preorder(t):
     [2, 4, 6]
     """
     "*** YOUR CODE HERE ***"
-    # TODO
     if branches(t)==[]:
         return [label(t)]
     lst =[]
-    for b in branches(t):
+    for b in branches:
           lst += preorder(b)
     return [label(t)] +lst  
 

@@ -90,4 +90,13 @@ def repeated(t, k):
     """
     assert k > 1
     "*** YOUR CODE HERE ***"
-    # TODO
+    count = 1
+    last = None
+    while count < k:  
+        cur = next(t)
+        if cur == last:
+            count += 1
+        else:
+            count = 1
+            last = cur
+    return last
