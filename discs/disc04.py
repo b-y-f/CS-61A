@@ -120,14 +120,6 @@ def subset_sum(target, lst):
     True
     """
     # TODO dont know hint: target-->0
-    if target == 0:
-        return True
-    elif len(lst)<1:
-        return False
-    else:
-        a = subset_sum(target-lst[0],lst[1:]) 
-        b = ... #  hint: keep same situation
-        return a or b
 
 
 def intersection(lst_of_lsts):
