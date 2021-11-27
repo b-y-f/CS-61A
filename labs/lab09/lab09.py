@@ -8,6 +8,7 @@ def insert_into_all(item, nested_list):
     [[0], [0, 1, 2], [0, 3]]
     """
     "*** YOUR CODE HERE ***"
+    return [ [item] + lst for lst in nested_list ]
 
 
 def subseqs(s):
@@ -20,11 +21,7 @@ def subseqs(s):
     >>> subseqs([])
     [[]]
     """
-    if ________________:
-        ________________
-    else:
-        ________________
-        ________________
+    # TODO
 
 
 def non_decrease_subseqs(s):
