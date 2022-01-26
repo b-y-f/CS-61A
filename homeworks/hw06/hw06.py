@@ -1,3 +1,7 @@
+from itertools import count
+from unittest import result
+
+
 class VendingMachine:
     """A vending machine that vends some product for some price.
 
@@ -176,6 +180,7 @@ def deep_map_mut(fn, link):
     # TODO 
 
 
+
 def two_list(vals, amounts):
     """
     Returns a linked list according to the two lists that were passed in. Assume
@@ -204,7 +209,6 @@ def two_list(vals, amounts):
             result = Link(vals[i], result)
     return result
 
-# TODO
 class VirFib():
     """A Virahanka Fibonacci number.
 
@@ -232,6 +236,8 @@ class VirFib():
 
     def next(self):
         "*** YOUR CODE HERE ***"
+        # TODO
+
 
     def __repr__(self):
         return "VirFib object, value " + str(self.value)

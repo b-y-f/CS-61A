@@ -184,7 +184,7 @@ def count_coins(change):
             return h(n-m,m) + h(n, descending_coin(m))
     return h(change, 25)
 
-# TODO for fun
+# for fun
 def print_move(origin, destination):
     """Print instructions to move a disk."""
     print("Move the top disk from rod", origin, "to rod", destination)

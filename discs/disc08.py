@@ -1,3 +1,7 @@
+from os import path
+import re
+
+
 class A:
     def __init__(self, x):
         self.x = x
@@ -108,9 +112,7 @@ def sum_nums(s):
 #     True
 #     """
     # Implementation Note: you might not need all lines in this skeleton code
-    # TODO today
-
-
+# TODO
         
 # def flip_two(s):
 #     """
@@ -124,7 +126,7 @@ def sum_nums(s):
 #     Link(2, Link(1, Link(4, Link(3, Link(5)))))
 #     """
 #     "*** YOUR CODE HERE ***"
-#     # TODO
+    # TODO
 
 
 
@@ -156,16 +158,22 @@ def make_even(t):
     for b in t.branches:
         make_even(b)
 
-# def leaves(t):
-#     """Returns a list of all the labels of the leaf nodes of the Tree t.
+def leaves(t):
+    """Returns a list of all the labels of the leaf nodes of the Tree t.
 
-#     >>> leaves(Tree(1))
-#     [1]
-#     >>> leaves(Tree(1, [Tree(2, [Tree(3)]), Tree(4)]))
-#     [3, 4]
-#     """
-#     "*** YOUR CODE HERE ***"
-    # TODO
+    >>> leaves(Tree(1))
+    [1]
+    >>> leaves(Tree(1, [Tree(2, [Tree(3)]), Tree(4)]))
+    [3, 4]
+    """
+    "*** YOUR CODE HERE ***"
+    res = []
+    if t.is_leaf():
+        return [t.label]
+    for b in t.branches:
+        res += leaves(b)
+    return res
+
 
 
 
@@ -177,4 +185,3 @@ def make_even(t):
 #     >>> find_paths(tree_ex, 12)
 #     []
 #     """
-#     # TODO
