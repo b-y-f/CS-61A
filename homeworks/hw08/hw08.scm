@@ -5,10 +5,20 @@
     (else (my-filter func (cdr lst))))
 )
 
-; TODO
-(define (interleave s1 s2) 'YOUR-CODE-HERE)
+(define (interleave s1 s2) 
+  (if (or (null? s1) (null? s2)) 
+    (append s1 s2)
+    (cons (car s1)
+      (cons (car s2)
+        (interleave (cdr s1) (cdr s2))))))
 
 (define (accumulate merger start n term)
-  'YOUR-CODE-HERE)
+  (if (zero? n) start 
+    (merger (term n) (accumulate merger start (- n 1) term)))
+)
 
-(define (no-repeats lst) 'YOUR-CODE-HERE)
+(define (no-repeats lst) 
+  (if (null? lst) lst
+    (cons (car lst) 
+      (no-repeats (filter (lambda (x) (not (= x (car lst)))) (cdr lst)))))
+)

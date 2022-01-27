@@ -1,7 +1,3 @@
-from itertools import count
-from unittest import result
-
-
 class VendingMachine:
     """A vending machine that vends some product for some price.
 

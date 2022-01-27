@@ -207,7 +207,6 @@ def minimum_mewtations(start, goal, limit):
     3
     """
     # BEGIN PROBLEM 7
-    # TODO 
     if limit < 0: return 1
     elif start == goal: return 0
     elif min(len(start),len(goal))==0:

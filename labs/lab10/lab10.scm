@@ -25,5 +25,6 @@
     )
 )
 
-; TODO
-(define (remove item lst) 'YOUR-CODE-HERE)
+(define (remove item lst)
+    (filter (lambda (x)(not (= x item))) lst)
+)
