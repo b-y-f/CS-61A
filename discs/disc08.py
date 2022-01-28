@@ -98,21 +98,27 @@ def sum_nums(s):
         return s.first
     return sum_nums(s.rest) + s.first
 
-# def multiply_lnks(lst_of_lnks):
-#     """
-#     >>> a = Link(2, Link(3, Link(5)))
-#     >>> b = Link(6, Link(4, Link(2)))
-#     >>> c = Link(4, Link(1, Link(0, Link(2))))
-#     >>> p = multiply_lnks([a, b, c])
-#     >>> p.first
-#     48
-#     >>> p.rest.first
-#     12
-#     >>> p.rest.rest.rest is Link.empty
-#     True
-#     """
+def multiply_lnks(lst_of_lnks):
+    """
+    >>> a = Link(2, Link(3, Link(5)))
+    >>> b = Link(6, Link(4, Link(2)))
+    >>> c = Link(4, Link(1, Link(0, Link(2))))
+    >>> p = multiply_lnks([a, b, c])
+    >>> p.first
+    48
+    >>> p.rest.first
+    12
+    >>> p.rest.rest.rest is Link.empty
+    True
+    """
     # Implementation Note: you might not need all lines in this skeleton code
-# TODO
+    res = 1
+    for lnk in lst_of_lnks:
+        if lnk is Link.empty:
+            return Link.empty
+        res *= lnk.first
+    rest_lst = [i.rest for i in lst_of_lnks]
+    return Link(res, multiply_lnks(rest_lst))
         
 # def flip_two(s):
 #     """
@@ -126,8 +132,7 @@ def sum_nums(s):
 #     Link(2, Link(1, Link(4, Link(3, Link(5)))))
 #     """
 #     "*** YOUR CODE HERE ***"
-    # TODO
-
+# TODO
 
 
 class Tree:

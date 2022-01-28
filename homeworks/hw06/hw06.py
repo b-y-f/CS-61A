@@ -1,3 +1,6 @@
+import email
+
+
 class VendingMachine:
     """A vending machine that vends some product for some price.
 
@@ -173,7 +176,7 @@ def deep_map_mut(fn, link):
     <9 <16> 25 36>
     """
     "*** YOUR CODE HERE ***"
-    # TODO 
+    # TODO
 
 
 
