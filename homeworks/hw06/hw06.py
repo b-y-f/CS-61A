@@ -1,6 +1,3 @@
-import email
-
-
 class VendingMachine:
     """A vending machine that vends some product for some price.
 
@@ -38,7 +35,9 @@ class VendingMachine:
     >>> w.vend()
     'Here is your soda.'
     """
+
     "*** YOUR CODE HERE ***"
+
     def __init__(self, item, price) -> None:
         self.item = item
         self.price = price
@@ -47,27 +46,26 @@ class VendingMachine:
 
     def vend(self):
         if self.stock == 0:
-            return 'Nothing left to vend. Please restock.'
+            return "Nothing left to vend. Please restock."
         elif self.fund < self.price:
-            return f'You must add ${self.price - self.fund } more funds.'
+            return f"You must add ${self.price - self.fund } more funds."
         else:
             change = self.fund - self.price
             self.stock -= 1
             self.fund = 0
             if change == 0:
-                return f'Here is your {self.item}.'
-            return f'Here is your {self.item} and ${change} change.'
+                return f"Here is your {self.item}."
+            return f"Here is your {self.item} and ${change} change."
 
     def add_funds(self, added):
         if self.stock == 0:
-            return f'Nothing left to vend. Please restock. Here is your ${added}.'
+            return f"Nothing left to vend. Please restock. Here is your ${added}."
         self.fund += added
-        return f'Current balance: ${self.fund}'
+        return f"Current balance: ${self.fund}"
 
     def restock(self, quantity):
         self.stock += quantity
-        return f'Current {self.item} stock: {self.stock}'
-
+        return f"Current {self.item} stock: {self.stock}"
 
 
 class Mint:
@@ -99,6 +97,7 @@ class Mint:
     >>> dime.worth()     # 20 cents + (155 - 50 years)
     125
     """
+
     present_year = 2021
 
     def __init__(self):
@@ -107,7 +106,6 @@ class Mint:
     def create(self, kind):
         "*** YOUR CODE HERE ***"
         return kind(self.year)
-
 
     def update(self):
         "*** YOUR CODE HERE ***"
@@ -122,8 +120,9 @@ class Coin:
         "*** YOUR CODE HERE ***"
         diff = Mint.present_year - self.year
         if diff > 50:
-            return (diff -50) + self.cents
+            return (diff - 50) + self.cents
         return self.cents
+
 
 class Nickel(Coin):
     cents = 5
@@ -153,9 +152,8 @@ def store_digits(n):
     result = Link.empty
     while n // 10 != 0:
         result = Link(n % 10, result)
-        n = n//10
-    return Link(n,result)
-
+        n = n // 10
+    return Link(n, result)
 
 
 def deep_map_mut(fn, link):
@@ -176,8 +174,13 @@ def deep_map_mut(fn, link):
     <9 <16> 25 36>
     """
     "*** YOUR CODE HERE ***"
-    # TODO
-
+    if link is Link.empty:
+        return
+    if isinstance(link.first, Link):
+        deep_map_mut(fn, link.first)
+    else:
+        link.first = fn(link.first)
+    deep_map_mut(fn, link.rest)
 
 
 def two_list(vals, amounts):
@@ -202,13 +205,14 @@ def two_list(vals, amounts):
     "*** YOUR CODE HERE ***"
     length = len(vals)
     result = Link.empty
-    for i in range(length-1,-1,-1):
+    for i in range(length - 1, -1, -1):
         repeat = amounts[i]
         for _ in range(repeat):
             result = Link(vals[i], result)
     return result
 
-class VirFib():
+
+class VirFib:
     """A Virahanka Fibonacci number.
 
     >>> start = VirFib()
@@ -236,7 +240,6 @@ class VirFib():
     def next(self):
         "*** YOUR CODE HERE ***"
         # TODO
-
 
     def __repr__(self):
         return "VirFib object, value " + str(self.value)
@@ -268,7 +271,25 @@ def is_bst(t):
     False
     """
     "*** YOUR CODE HERE ***"
+    # TODO
+    if t.is_leaf():
+        return True
+    if len(t.branches) == 1:
+        return is_bst(t.branches[0])
+    if len(t.branches) == 2:
+        return is_bst(t.branches[0]) and is_bst(t.branches[1]) and bst_max(t.branches[0]) <= t.label and bst_min(t.branches[1]) > t.label
+    else:
+        return False
+        
+def bst_min(t):
+    if t.is_leaf():
+        return t.label
+    return min(t.label, bst_min(t.branches[0]))
 
+def bst_max(t):
+    if t.is_leaf():
+        return t.label
+    return max(t.label, bst_max(t.branches[-1]))
 
 class Link:
     """A linked list.
@@ -290,6 +311,7 @@ class Link:
     >>> print(s)                             # Prints str(s)
     <5 7 <8 9>>
     """
+
     empty = ()
 
     def __init__(self, first, rest=empty):
@@ -299,17 +321,17 @@ class Link:
 
     def __repr__(self):
         if self.rest is not Link.empty:
-            rest_repr = ', ' + repr(self.rest)
+            rest_repr = ", " + repr(self.rest)
         else:
-            rest_repr = ''
-        return 'Link(' + repr(self.first) + rest_repr + ')'
+            rest_repr = ""
+        return "Link(" + repr(self.first) + rest_repr + ")"
 
     def __str__(self):
-        string = '<'
+        string = "<"
         while self.rest is not Link.empty:
-            string += str(self.first) + ' '
+            string += str(self.first) + " "
             self = self.rest
-        return string + str(self.first) + '>'
+        return string + str(self.first) + ">"
 
 
 class Tree:
@@ -334,15 +356,16 @@ class Tree:
 
     def __repr__(self):
         if self.branches:
-            branch_str = ', ' + repr(self.branches)
+            branch_str = ", " + repr(self.branches)
         else:
-            branch_str = ''
-        return 'Tree({0}{1})'.format(self.label, branch_str)
+            branch_str = ""
+        return "Tree({0}{1})".format(self.label, branch_str)
 
     def __str__(self):
         def print_tree(t, indent=0):
-            tree_str = '  ' * indent + str(t.label) + "\n"
+            tree_str = "  " * indent + str(t.label) + "\n"
             for b in t.branches:
                 tree_str += print_tree(b, indent + 1)
             return tree_str
+
         return print_tree(self).rstrip()

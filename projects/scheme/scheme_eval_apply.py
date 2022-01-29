@@ -1,3 +1,4 @@
+import re
 import sys
 import os
 
@@ -46,6 +47,19 @@ def scheme_apply(procedure, args, env):
     if isinstance(procedure, BuiltinProcedure):
         # BEGIN PROBLEM 2
         "*** YOUR CODE HERE ***"
+        def to_list(link):
+            if link is nil:
+                return []
+            return [link.first] + to_list(link.rest)
+        
+        result = to_list(args)
+        if procedure.expect_env:
+            result.append(env)
+        try:
+            return procedure.py_func(*result)
+        except TypeError:
+            raise SchemeError('incorrect number of arguments')
+
         # END PROBLEM 2
     elif isinstance(procedure, LambdaProcedure):
         # BEGIN PROBLEM 9
