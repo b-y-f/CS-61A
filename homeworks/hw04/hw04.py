@@ -229,6 +229,7 @@ def has_path(t, word):
     assert len(word) > 0, 'no path for empty word.'
     "*** YOUR CODE HERE ***"
     
+    
 
 
 
