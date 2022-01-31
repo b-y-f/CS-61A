@@ -120,19 +120,22 @@ def multiply_lnks(lst_of_lnks):
     rest_lst = [i.rest for i in lst_of_lnks]
     return Link(res, multiply_lnks(rest_lst))
         
-# def flip_two(s):
-#     """
-#     >>> one_lnk = Link(1)
-#     >>> flip_two(one_lnk)
-#     >>> one_lnk
-#     Link(1)
-#     >>> lnk = Link(1, Link(2, Link(3, Link(4, Link(5)))))
-#     >>> flip_two(lnk)
-#     >>> lnk
-#     Link(2, Link(1, Link(4, Link(3, Link(5)))))
-#     """
-#     "*** YOUR CODE HERE ***"
-# TODO
+def flip_two(s):
+    """
+    >>> one_lnk = Link(1)
+    >>> flip_two(one_lnk)
+    >>> one_lnk
+    Link(1)
+    >>> lnk = Link(1, Link(2, Link(3, Link(4, Link(5)))))
+    >>> flip_two(lnk)
+    >>> lnk
+    Link(2, Link(1, Link(4, Link(3, Link(5)))))
+    """
+    "*** YOUR CODE HERE ***"
+    if s is Link.empty or s.rest is Link.empty:
+        return
+    s.first, s.rest.first = s.rest.first, s.first
+    flip_two(s.rest.rest)
 
 
 class Tree:
