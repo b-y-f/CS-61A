@@ -1,3 +1,4 @@
+from cmath import exp
 from scheme_eval_apply import *
 from scheme_utils import *
 from scheme_classes import *
@@ -47,6 +48,14 @@ def do_define_form(expressions, env):
         # defining a named procedure e.g. (define (f x y) (+ x y))
         # BEGIN PROBLEM 10
         "*** YOUR CODE HERE ***"
+        # print(signature, expressions)
+        symbol = expressions.first.first
+        formals = expressions.first.rest
+        body = expressions.rest
+        expr = Pair(formals, body)
+        procedure = do_lambda_form(expr, env)
+        env.define(symbol, procedure)
+        return symbol
         # END PROBLEM 10
     else:
         bad_signature = signature.first if isinstance(signature, Pair) else signature
