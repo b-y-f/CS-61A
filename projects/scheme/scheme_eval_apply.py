@@ -72,6 +72,13 @@ def scheme_apply(procedure, args, env):
     elif isinstance(procedure, MuProcedure):
         # BEGIN PROBLEM 11
         "*** YOUR CODE HERE ***"
+        # TODO ?
+        child = env
+        while procedure.formals:
+            child.define(procedure.formals.first, args.first)
+            procedure.formals = procedure.formals.rest
+            args = args.rest
+        return eval_all(procedure.body, child)
         # END PROBLEM 11
     else:
         assert False, "Unexpected procedure: {}".format(procedure)
