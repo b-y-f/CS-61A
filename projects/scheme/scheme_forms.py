@@ -189,6 +189,10 @@ def do_cond_form(expressions, env):
         if is_scheme_true(test):
             # BEGIN PROBLEM 13
             "*** YOUR CODE HERE ***"
+            if not clause.rest:
+                return test
+            return eval_all(clause.rest, env)
+            # print(expressions.first)
             # END PROBLEM 13
         expressions = expressions.rest
 
@@ -215,6 +219,12 @@ def make_let_frame(bindings, env):
     names = values = nil
     # BEGIN PROBLEM 14
     "*** YOUR CODE HERE ***"
+    while bindings:
+        validate_form(bindings.first,2,2)
+        name,value = bindings.first.first, scheme_eval(bindings.first.rest.first,env)
+        names, values = Pair(name, names), Pair(value, values)
+        bindings = bindings.rest
+    validate_formals(names)
     # END PROBLEM 14
     return env.make_child_frame(names, values)
 
