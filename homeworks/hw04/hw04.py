@@ -1,3 +1,6 @@
+from operator import le
+
+
 HW_SOURCE_FILE = __file__
 
 
@@ -117,7 +120,10 @@ def balanced(m):
     True
     """
     "*** YOUR CODE HERE ***"
-    # TODO hint: use --> total_weight
+    # TODO hint: is_planet ==> True
+    if is_planet(m):
+        return True
+
 
 
 def totals_tree(m):
@@ -228,7 +234,14 @@ def has_path(t, word):
     """
     assert len(word) > 0, 'no path for empty word.'
     "*** YOUR CODE HERE ***"
+    #TODO
+    # for root have to be same with first label
+    # NOTE: flow sequence is important
     
+    
+
+
+
     
 
 
