@@ -219,8 +219,14 @@ def move_stack(n, start, end):
     """
     assert 1 <= start <= 3 and 1 <= end <= 3 and start != end, "Bad start/end"
     "*** YOUR CODE HERE ***"
-    # TODO
     t = 6-start-end
+    def h(n, start,end, tmp):
+        if n==1:
+            return print_move(start, end)
+        h(n-1, start, tmp ,end)
+        print_move(start, end)
+        h(n-1, tmp, end, start)
+    return h(n,start, end,t)
 
 
 from operator import sub, mul

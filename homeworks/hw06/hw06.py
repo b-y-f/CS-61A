@@ -1,3 +1,6 @@
+from operator import le
+
+
 class VendingMachine:
     """A vending machine that vends some product for some price.
 
@@ -271,18 +274,18 @@ def is_bst(t):
     False
     """
     "*** YOUR CODE HERE ***"
-    # TODO
-    
-        
-def bst_min(t):
-    if t.is_leaf():
-        return t.label
-    return min(t.label, bst_min(t.branches[0]))
+    def bst_min(t):
+        if t.is_leaf():
+            return t.label
+        return min(t.label, bst_min(t.branches[0]))
 
-def bst_max(t):
-    if t.is_leaf():
-        return t.label
-    return max(t.label, bst_max(t.branches[-1]))
+    def bst_max(t):
+        if t.is_leaf():
+            return t.label
+        return max(t.label, bst_max(t.branches[-1]))
+    # TODO
+
+
 
 class Link:
     """A linked list.
