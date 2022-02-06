@@ -21,6 +21,14 @@ def prune_min(t):
     Tree(6, [Tree(3, [Tree(1)])])
     """
     "*** YOUR CODE HERE ***"
+    if not t.branches:
+        return
+    elif t.branches[0].label < t.branches[1].label:
+        t.branches.remove(t.branches[1])
+        prune_min(t.branches[0])
+    else:
+        t.branches.remove(t.branches[0])        
+        prune_min(t.branches[1])
 
 
 def address_oneline(text):
@@ -41,12 +49,12 @@ def address_oneline(text):
     >>> address_oneline("790 lowercase St")
     []
     """
-    block_number = r'___'
-    cardinal_dir = r'___'  # whitespace is important!
-    street = r'___'
-    type_abbr = r'___'
+    block_number = r'\d{3,5}\s?'
+    cardinal_dir = r'[NESW]?\s'  # whitespace is important!
+    street = r'[A-Z][A-Za-z]{1,4}\s?[a-zA-Z]{2,5}\s'
+    type_abbr = r'[a-zA-Z]{2,5}'
     street_name = f"{cardinal_dir}{street}{type_abbr}"
-    return re.findall(f"{block_number} {street_name}", text)
+    return re.findall(f"{block_number}{street_name}", text)
 
 
 def make_test_random():
@@ -107,9 +115,14 @@ class Player:
 
     def debate(self, other):
         "*** YOUR CODE HERE ***"
+        if make_test_random()() < max(0.1, self.popularity / (self.popularity + other.popularity)):
+            self.popularity += 50
 
     def speech(self, other):
         "*** YOUR CODE HERE ***"
+        self.votes += self.popularity//10
+        self.popularity += self.popularity//10
+        other.popularity -= other.popularity // 10
 
     def choose(self, other):
         return self.speech
@@ -134,6 +147,10 @@ class Game:
     def play(self):
         while not self.game_over:
             "*** YOUR CODE HERE ***"
+            self.p1.choose(self.p2)(self.p2)
+            self.p2.choose(self.p1)(self.p1)
+            self.turn += 1
+
         return self.winner
 
     @property
@@ -143,6 +160,11 @@ class Game:
     @property
     def winner(self):
         "*** YOUR CODE HERE ***"
+        # print(self.p1.votes, self.p2.votes)
+        if self.p1.votes > self.p2.votes:
+            return self.p1
+        elif self.p1.votes < self.p2.votes:
+            return self.p2
 
 
 # Phase 3: New Players
@@ -159,6 +181,9 @@ class AggressivePlayer(Player):
 
     def choose(self, other):
         "*** YOUR CODE HERE ***"
+        if self.popularity <= other.popularity:
+            return self.debate
+        return self.speech
 
 
 class CautiousPlayer(Player):
@@ -176,7 +201,9 @@ class CautiousPlayer(Player):
 
     def choose(self, other):
         "*** YOUR CODE HERE ***"
-
+        if self.popularity == 0:
+            return self.debate
+        return self.speech
 
 def add_trees(t1, t2):
     """
@@ -214,6 +241,8 @@ def add_trees(t1, t2):
       5
     """
     "*** YOUR CODE HERE ***"
+    # TODO
+    
 
 
 def foldl(link, fn, z):
@@ -229,7 +258,7 @@ def foldl(link, fn, z):
     if link is Link.empty:
         return z
     "*** YOUR CODE HERE ***"
-    return foldl(______, ______, ______)
+    return foldl(link.rest, fn, fn(z, link.first))
 
 
 def foldr(link, fn, z):
@@ -243,6 +272,9 @@ def foldr(link, fn, z):
     6
     """
     "*** YOUR CODE HERE ***"
+    if link.rest is Link.empty:
+        return fn(link.first, z) 
+    return fn(link.first ,foldr(link.rest, fn, z))
 
 
 def match_url(text):
@@ -260,10 +292,10 @@ def match_url(text):
     >>> match_url("htp://domain.org")
     False
     """
-    scheme = r'___'
-    domain = r'___'
-    path = r'___'
-    anchor = r'___'
+    scheme = r'(https|http):\/\/'
+    domain = r'\w+\.\w+'
+    path = r'\/[\w]+\/?\.?(\w+)?'
+    anchor = r'#[\w-]+'
     return bool(re.match(rf"^(?:{scheme})?{domain}(?:{path})?(?:{anchor})?$", text))
 
 
