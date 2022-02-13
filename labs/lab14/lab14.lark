@@ -1,8 +1,9 @@
-lines: "null"
 
-line: "null"
+lines: (line newline?)*
 
-word: "null"
+line: (word ",")+ word
+
+word: WORD?
 
 newline: "\n"
 
