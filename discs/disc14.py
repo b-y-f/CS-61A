@@ -10,14 +10,14 @@
 #     >>> paths(3, 3) # No calls is a valid path
 #     [[3]]
 #     """
-    # if x==y:
-    #     return x
-    # elif x>y:
-    #     return 
-    # else:
-    #     a = [x] + paths(x+1,y)
-    #     b = [x] + paths(x*2,y)
-    #     return []
+# if x==y:
+#     return x
+# elif x>y:
+#     return
+# else:
+#     a = [x] + paths(x+1,y)
+#     b = [x] + paths(x*2,y)
+#     return []
 
 
 def reverse(lst):
@@ -33,30 +33,117 @@ def reverse(lst):
     [-8, 72, 42]
     """
     "*** YOUR CODE HERE ***"
-    left,right = 0,len(lst)-1
+    left, right = 0, len(lst) - 1
     while left < right:
-        lst[left],lst[right] = lst[right],lst[left]
+        lst[left], lst[right] = lst[right], lst[left]
         left += 1
         right -= 1
 
 
-def reverse_other(t):
-    """Mutates the tree such that nodes on every other (odd-depth)
-    level have the labels of their branches all reversed.
+# def reverse_other(t):
+#     """Mutates the tree such that nodes on every other (odd-depth)
+#     level have the labels of their branches all reversed.
 
-    >>> t = Tree(1, [Tree(2), Tree(3), Tree(4)])
-    >>> reverse_other(t)
-    >>> t
-    Tree(1, [Tree(4), Tree(3), Tree(2)])
-    >>> t = Tree(1, [Tree(2, [Tree(3, [Tree(4), Tree(5)]), Tree(6, [Tree(7)])]), Tree(8)])
-    >>> reverse_other(t)
-    >>> t
-    Tree(1, [Tree(8, [Tree(3, [Tree(5), Tree(4)]), Tree(6, [Tree(7)])]), Tree(2)])
+#     >>> t = Tree(1, [Tree(2), Tree(3), Tree(4)])
+#     >>> reverse_other(t)
+#     >>> t
+#     Tree(1, [Tree(4), Tree(3), Tree(2)])
+#     >>> t = Tree(1, [Tree(2, [Tree(3, [Tree(4), Tree(5)]), Tree(6, [Tree(7)])]), Tree(8)])
+#     >>> reverse_other(t)
+#     >>> t
+#     Tree(1, [Tree(8, [Tree(3, [Tree(5), Tree(4)]), Tree(6, [Tree(7)])]), Tree(2)])
+#     """
+#     "*** YOUR CODE HERE ***"
+# TODO double for
+
+
+def deep_map(f, link):
+    """Return a Link with the same structure as link but with fn mapped over
+    its elements. If an element is an instance of a linked list, recursively
+    apply f inside that linked list as well.
+
+    >>> s = Link(1, Link(Link(2, Link(3)), Link(4)))
+    >>> print(deep_map(lambda x: x * x, s))
+    <1 <4 9> 16>
+    >>> print(s) # unchanged
+    <1 <2 3> 4>
+    >>> print(deep_map(lambda x: 2 * x, Link(s, Link(Link(Link(5))))))
+    <<2 <4 6> 8> <<10>>>
     """
     "*** YOUR CODE HERE ***"
-    # TODO double for
+    if link is Link.empty:
+        return link
+    if isinstance(link.first, Link):
+        return Link(deep_map(f, link.first), deep_map(f, link.rest))
+    else:
+        return Link(f(link.first), deep_map(f, link.rest))
 
 
+def repeated(f):
+    """
+    >>> double = lambda x: 2 * x
+    >>> funcs = repeated(double)
+    >>> identity = next(funcs)
+    >>> double = next(funcs)
+    >>> quad = next(funcs)
+    >>> oct = next(funcs)
+    >>> quad(1)
+    4
+    >>> oct(1)
+    8
+    >>> [g(1) for _, g in
+    ...  zip(range(5), repeated(lambda x: 2 * x))]
+    [1, 2, 4, 8, 16]
+    """
+    g = lambda x: x
+    while True:
+        yield g
+        g = (lambda prev_f, curr_f: lambda x: curr_f(prev_f(x)))(g, f)
+
+
+"""
+(define (nondecreaselist s)
+
+    (cond
+
+     ((null? s) s)
+
+     ((null? (cdr s)) (list s))
+
+     ((<= (car s) (car (cdr s))) (cons (cons (car s) (car (nondecreaselist (cdr s)))) (cdr (nondecreaselist (cdr s)))))
+
+     (else (cons (list(car s)) (nondecreaselist (cdr s))))
+
+     )
+)
+"""
+
+
+import re
+
+
+def greetings(message):
+    """
+    Returns whether a string is a greeting. Greetings begin with either Hi, Hello, or
+    Hey (either capitalized or lowercase), and/or end with Bye (either capitalized or lowercase) optionally followed by
+    an exclamation point or period.
+
+    >>> greetings("Hi! Let's talk about our favorite submissions to the Scheme Art Contest")
+    True
+    >>> greetings("Hey I just figured out that when I type the Konami Code into cs61a.org, something fun happens")
+    True
+    >>> greetings("I'm going to watch the sun set from the top of the Campanile! Bye!")
+    True
+    >>> greetings("Bye Bye Birdie is one of my favorite musicals.")
+    False
+    >>> greetings("High in the hills of Berkeley lived a legendary creature. His name was Oski")
+    False
+    >>> greetings('Hi!')
+    True
+    >>> greetings("bye")
+    True
+    """
+    return bool(re.search(r"\b([Hh][Ii]|[hH]ello|[Hh]ey)\b|[bB]ye!?$", message))
 
 
 ##################  Classes  ##################
