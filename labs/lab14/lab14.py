@@ -27,7 +27,7 @@ def prune_min(t):
         t.branches.remove(t.branches[1])
         prune_min(t.branches[0])
     else:
-        t.branches.remove(t.branches[0])        
+        t.branches.remove(t.branches[0])
         prune_min(t.branches[1])
 
 
@@ -49,10 +49,10 @@ def address_oneline(text):
     >>> address_oneline("790 lowercase St")
     []
     """
-    block_number = r'\d{3,5}\s?'
-    cardinal_dir = r'[NESW]?\s'  # whitespace is important!
-    street = r'[A-Z][A-Za-z]{1,4}\s?[a-zA-Z]{2,5}\s'
-    type_abbr = r'[a-zA-Z]{2,5}'
+    block_number = r"\d{3,5}\s?"
+    cardinal_dir = r"[NESW]?\s"  # whitespace is important!
+    street = r"[A-Z][A-Za-z]{1,4}\s?[a-zA-Z]{2,5}\s"
+    type_abbr = r"[a-zA-Z]{2,5}"
     street_name = f"{cardinal_dir}{street}{type_abbr}"
     return re.findall(f"{block_number}{street_name}", text)
 
@@ -76,6 +76,7 @@ def make_test_random():
         rand = rands[0]
         rands.append(rands.pop(0))
         return rand
+
     return random
 
 
@@ -115,13 +116,15 @@ class Player:
 
     def debate(self, other):
         "*** YOUR CODE HERE ***"
-        if make_test_random()() < max(0.1, self.popularity / (self.popularity + other.popularity)):
+        if make_test_random()() < max(
+            0.1, self.popularity / (self.popularity + other.popularity)
+        ):
             self.popularity += 50
 
     def speech(self, other):
         "*** YOUR CODE HERE ***"
-        self.votes += self.popularity//10
-        self.popularity += self.popularity//10
+        self.votes += self.popularity // 10
+        self.popularity += self.popularity // 10
         other.popularity -= other.popularity // 10
 
     def choose(self, other):
@@ -205,6 +208,7 @@ class CautiousPlayer(Player):
             return self.debate
         return self.speech
 
+
 def add_trees(t1, t2):
     """
     >>> numbers = Tree(1,
@@ -241,12 +245,10 @@ def add_trees(t1, t2):
       5
     """
     "*** YOUR CODE HERE ***"
-    # TODO
-    
 
 
 def foldl(link, fn, z):
-    """ Left fold
+    """Left fold
     >>> lst = Link(3, Link(2, Link(1)))
     >>> foldl(lst, sub, 0) # (((0 - 3) - 2) - 1)
     -6
@@ -262,7 +264,7 @@ def foldl(link, fn, z):
 
 
 def foldr(link, fn, z):
-    """ Right fold
+    """Right fold
     >>> lst = Link(3, Link(2, Link(1)))
     >>> foldr(lst, sub, 0) # (3 - (2 - (1 - 0)))
     2
@@ -273,8 +275,8 @@ def foldr(link, fn, z):
     """
     "*** YOUR CODE HERE ***"
     if link.rest is Link.empty:
-        return fn(link.first, z) 
-    return fn(link.first ,foldr(link.rest, fn, z))
+        return fn(link.first, z)
+    return fn(link.first, foldr(link.rest, fn, z))
 
 
 def match_url(text):
@@ -292,10 +294,10 @@ def match_url(text):
     >>> match_url("htp://domain.org")
     False
     """
-    scheme = r'(https|http):\/\/'
-    domain = r'\w+\.\w+'
-    path = r'\/[\w]+\/?\.?(\w+)?'
-    anchor = r'#[\w-]+'
+    scheme = r"(https|http):\/\/"
+    domain = r"\w+\.\w+"
+    path = r"\/[\w]+\/?\.?(\w+)?"
+    anchor = r"#[\w-]+"
     return bool(re.match(rf"^(?:{scheme})?{domain}(?:{path})?(?:{anchor})?$", text))
 
 
@@ -321,17 +323,18 @@ class Tree:
 
     def __repr__(self):
         if self.branches:
-            branch_str = ', ' + repr(self.branches)
+            branch_str = ", " + repr(self.branches)
         else:
-            branch_str = ''
-        return 'Tree({0}{1})'.format(self.label, branch_str)
+            branch_str = ""
+        return "Tree({0}{1})".format(self.label, branch_str)
 
     def __str__(self):
         def print_tree(t, indent=0):
-            tree_str = '  ' * indent + str(t.label) + "\n"
+            tree_str = "  " * indent + str(t.label) + "\n"
             for b in t.branches:
                 tree_str += print_tree(b, indent + 1)
             return tree_str
+
         return print_tree(self).rstrip()
 
 
@@ -355,6 +358,7 @@ class Link:
     >>> print(s)                             # Prints str(s)
     <5 7 <8 9>>
     """
+
     empty = ()
 
     def __init__(self, first, rest=empty):
@@ -364,14 +368,14 @@ class Link:
 
     def __repr__(self):
         if self.rest is not Link.empty:
-            rest_repr = ', ' + repr(self.rest)
+            rest_repr = ", " + repr(self.rest)
         else:
-            rest_repr = ''
-        return 'Link(' + repr(self.first) + rest_repr + ')'
+            rest_repr = ""
+        return "Link(" + repr(self.first) + rest_repr + ")"
 
     def __str__(self):
-        string = '<'
+        string = "<"
         while self.rest is not Link.empty:
-            string += str(self.first) + ' '
+            string += str(self.first) + " "
             self = self.rest
-        return string + str(self.first) + '>'
+        return string + str(self.first) + ">"
