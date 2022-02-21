@@ -20,6 +20,9 @@
 #     return []
 
 
+from xml.etree.ElementTree import tostring
+
+
 def reverse(lst):
     """Reverses lst using mutation.
 
@@ -40,21 +43,26 @@ def reverse(lst):
         right -= 1
 
 
-# def reverse_other(t):
-#     """Mutates the tree such that nodes on every other (odd-depth)
-#     level have the labels of their branches all reversed.
+def reverse_other(t):
+    """Mutates the tree such that nodes on every other (odd-depth)
+    level have the labels of their branches all reversed.
 
-#     >>> t = Tree(1, [Tree(2), Tree(3), Tree(4)])
-#     >>> reverse_other(t)
-#     >>> t
-#     Tree(1, [Tree(4), Tree(3), Tree(2)])
-#     >>> t = Tree(1, [Tree(2, [Tree(3, [Tree(4), Tree(5)]), Tree(6, [Tree(7)])]), Tree(8)])
-#     >>> reverse_other(t)
-#     >>> t
-#     Tree(1, [Tree(8, [Tree(3, [Tree(5), Tree(4)]), Tree(6, [Tree(7)])]), Tree(2)])
-#     """
-#     "*** YOUR CODE HERE ***"
-# TODO double for
+    >>> t = Tree(1, [Tree(2), Tree(3), Tree(4)])
+    >>> reverse_other(t)
+    >>> t
+    Tree(1, [Tree(4), Tree(3), Tree(2)])
+    >>> t = Tree(1, [Tree(2, [Tree(3, [Tree(4), Tree(5)]), Tree(6, [Tree(7)])]), Tree(8)])
+    >>> reverse_other(t)
+    >>> t
+    Tree(1, [Tree(8, [Tree(3, [Tree(5), Tree(4)]), Tree(6, [Tree(7)])]), Tree(2)])
+    """
+    "*** YOUR CODE HERE ***"
+    for b in t.branches:
+        for bb in b.branches:
+            reverse_other(bb)
+    labels = [branch.label for branch in t.branches][::-1]
+    for i in range(len(labels)):
+        t.branches[i].label = labels[i]
 
 
 def deep_map(f, link):
