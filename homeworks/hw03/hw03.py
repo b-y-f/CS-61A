@@ -220,13 +220,13 @@ def move_stack(n, start, end):
     assert 1 <= start <= 3 and 1 <= end <= 3 and start != end, "Bad start/end"
     "*** YOUR CODE HERE ***"
     t = 6-start-end
-    def h(n, start,end, tmp):
+    def h(n, s, e, t):
         if n==1:
-            return print_move(start, end)
-        h(n-1, start, tmp ,end)
-        print_move(start, end)
-        h(n-1, tmp, end, start)
-    return h(n,start, end,t)
+            return print_move(s,e)
+        h(n-1, s,t,e)
+        print_move(s,e)
+        h(n-1, t, e, s)
+    return h(n,start,end,t)
 
 
 from operator import sub, mul
@@ -243,5 +243,15 @@ def make_anonymous_factorial():
     ...     ['Assign', 'AnnAssign', 'AugAssign', 'NamedExpr', 'FunctionDef', 'Recursion'])
     True
     """
-    # TODO
+    def func1(f):
+        def func2(k):
+            return f(f, k)
+        return func2
+    def func3(f, k):
+        if k == 1:
+            return k
+        else:
+            return mul(k, f(f, sub(k, 1)))
+    return func1(func3)
+
 
