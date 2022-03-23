@@ -245,7 +245,7 @@ def add_trees(t1, t2):
       5
     """
     "*** YOUR CODE HERE ***"
-
+# TODO
 
 def foldl(link, fn, z):
     """Left fold
